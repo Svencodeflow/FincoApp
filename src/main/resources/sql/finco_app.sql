@@ -7,8 +7,7 @@ CREATE TABLE `users`
  `Nachname` VARCHAR(30) NOT NULL ,
  `E_Mail` VARCHAR(50) NOT NULL ,
  `PasswortHash` VARCHAR(64) NOT NULL ,
- `RegDatum` DATE NOT NULL ,
- `Rolle` VARCHAR(30) NOT NULL);
+ `RegDatum` DATE NOT NULL);
 
   CREATE TABLE `kategorie`
   (`KategorieID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
