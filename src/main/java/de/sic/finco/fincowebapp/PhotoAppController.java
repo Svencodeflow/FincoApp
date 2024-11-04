@@ -19,9 +19,9 @@ public class PhotoAppController {
         this.put("1", new Photo("1", "test.jpg"));
     }};*/
 
-    private final PhotosService photosService;
+    private final KategorieService photosService;
 
-    public PhotoAppController(PhotosService photosService) {
+    public PhotoAppController(KategorieService photosService) {
         this.photosService = photosService;
     }
 

@@ -3,44 +3,44 @@ package de.sic.finco.fincowebapp;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PhotosService {
+public class KategorieService {
     /*private Map<String, Photo> db = new HashMap<String, Photo>() {{
         this.put("1", new Photo("1", "test.jpg"));
     }};*/
 
-    private final PhotosRepository photosRepository;
+    private final PhotosRepository kategorieRepository;
 
-    public PhotosService(PhotosRepository photosRepository) {
-        this.photosRepository = photosRepository;
+    public KategorieService(PhotosRepository photosRepository) {
+        this.kategorieRepository = photosRepository;
     }
 
     //public Collection<Photo> get() {
     public Iterable<Kategorie> get() {
         //return db.values();
-        return photosRepository.findAll();
+        return kategorieRepository.findAll();
     }
 
     //public Photo get(String id) {
     public Kategorie get(Integer id) {
         //return db.get(id);
-        return photosRepository.findById(id).orElse(null);
+        return kategorieRepository.findById(id).orElse(null);
     }
 
     //public Photo remove(String id) {
     public void remove(Integer id) {
         //return db.remove(id);
-        photosRepository.deleteById(id);
+        kategorieRepository.deleteById(id);
     }
 
     public Kategorie save(String fileName, String contentType, byte[] data) {
         Kategorie photo = new Kategorie();
-        photo.setContentType(contentType);
+        photo.setName(contentType);
         //photo.setId(UUID.randomUUID().toString());
-        photo.setFileName(fileName);
+        photo.setTyp(fileName);
         photo.setData(data);
 
         //db.put(photo.getId(), photo);
-        photosRepository.save(photo);
+        kategorieRepository.save(photo);
 
         return photo;
     }

@@ -9,9 +9,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class DownloadController {
 
-    private final PhotosService photosService;
+    private final KategorieService photosService;
 
-    public DownloadController(PhotosService photosService) {
+    public DownloadController(KategorieService photosService) {
         this.photosService = photosService;
     }
 
