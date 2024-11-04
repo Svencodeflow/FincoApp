@@ -8,9 +8,9 @@ public class KategorieService {
         this.put("1", new Photo("1", "test.jpg"));
     }};*/
 
-    private final PhotosRepository kategorieRepository;
+    private final KategorieRepository kategorieRepository;
 
-    public KategorieService(PhotosRepository photosRepository) {
+    public KategorieService(KategorieRepository photosRepository) {
         this.kategorieRepository = photosRepository;
     }
 
