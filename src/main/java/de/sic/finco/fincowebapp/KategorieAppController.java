@@ -12,17 +12,17 @@ import java.io.IOException;
 
 //@RestController
 @Controller
-public class PhotoAppController {
+public class KategorieAppController {
 
     //private List<Photo> db = List.of(new Photo("1","test.jpg"));
     /*private Map<String, Photo> db = new HashMap<String, Photo>() {{
         this.put("1", new Photo("1", "test.jpg"));
     }};*/
 
-    private final KategorieService photosService;
+    private final KategorieService kategorieService;
 
-    public PhotoAppController(KategorieService photosService) {
-        this.photosService = photosService;
+    public KategorieAppController(KategorieService kategorieService) {
+        this.kategorieService = kategorieService;
     }
 
     @GetMapping({"/"})
@@ -38,14 +38,14 @@ public class PhotoAppController {
     //public Collection<Photo> get() {
     public Iterable<Kategorie> get() {
         //return this.db.values();
-        return photosService.get();
+        return kategorieService.get();
     }
 
     @GetMapping({"/photos/{id}"})
     @ResponseBody
     //public Photo get(@PathVariable String id) {
     public Kategorie get(@PathVariable Integer id) {
-        Kategorie photo = (Kategorie) this.photosService.get(id);
+        Kategorie photo = (Kategorie) this.kategorieService.get(id);
         if(photo == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -60,7 +60,7 @@ public class PhotoAppController {
         if(photo == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }*/
-        photosService.remove(id);
+        kategorieService.remove(id);
     }
 
     @PostMapping ({"/photos"})
@@ -69,6 +69,6 @@ public class PhotoAppController {
     public Kategorie create(@RequestPart("data") @Valid MultipartFile file) throws IOException {
         /*Photo photo = photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         return photo;*/
-        return photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        return kategorieService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }
