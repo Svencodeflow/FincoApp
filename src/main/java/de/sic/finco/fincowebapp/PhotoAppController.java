@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.*;
 
 //@RestController
 @Controller
@@ -37,7 +36,7 @@ public class PhotoAppController {
     @ResponseBody
     //public List<Photo> get() {
     //public Collection<Photo> get() {
-    public Iterable<Photo> get() {
+    public Iterable<Kategorie> get() {
         //return this.db.values();
         return photosService.get();
     }
@@ -45,8 +44,8 @@ public class PhotoAppController {
     @GetMapping({"/photos/{id}"})
     @ResponseBody
     //public Photo get(@PathVariable String id) {
-    public Photo get(@PathVariable Integer id) {
-        Photo photo = (Photo) this.photosService.get(id);
+    public Kategorie get(@PathVariable Integer id) {
+        Kategorie photo = (Kategorie) this.photosService.get(id);
         if(photo == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -67,7 +66,7 @@ public class PhotoAppController {
     @PostMapping ({"/photos"})
     @ResponseBody
     //public Photo create(@RequestBody @Valid Photo photo) {
-    public Photo create(@RequestPart("data") @Valid MultipartFile file) throws IOException {
+    public Kategorie create(@RequestPart("data") @Valid MultipartFile file) throws IOException {
         /*Photo photo = photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         return photo;*/
         return photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
