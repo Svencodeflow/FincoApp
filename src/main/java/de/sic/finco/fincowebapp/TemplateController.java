@@ -13,18 +13,22 @@ import java.time.Duration;
 @Controller
 public class TemplateController {
 
-    //Boolean isFirstLogin = false;
+    Boolean isFirstLogin = false;
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("username", "John Doe");
-        return "pages/home";
-       /* if (isFirstLogin = true) {
-            return "pages/landingpage";
+
+        if(isFirstLogin == true) {
+            return "pages/Landingpage";
         } else {
-            return "pages/home";
-        }*/
+            return "pages/Landingpage";
+        }
     }
 
+    @GetMapping("/landingpage")
+    public String landingPage(Model model) {
+        return "pages/newsite";
+    }
 
 }
