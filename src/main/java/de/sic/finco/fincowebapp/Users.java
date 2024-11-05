@@ -11,7 +11,7 @@ public class Users {
     @Id @NotEmpty
     private String KdNr;
     private String userIBAN;
-    private String vorname;
+    private String vorname,
     private String nachname;
     private String eMail;
     private String passwortHash;
