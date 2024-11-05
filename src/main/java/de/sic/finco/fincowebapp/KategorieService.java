@@ -2,11 +2,10 @@ package de.sic.finco.fincowebapp;
 
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class KategorieService {
-    /*private Map<String, Photo> db = new HashMap<String, Photo>() {{
-        this.put("1", new Photo("1", "test.jpg"));
-    }};*/
 
     private final KategorieRepository kategorieRepository;
 
@@ -33,15 +32,13 @@ public class KategorieService {
     }
 
     public Kategorie save(String fileName, String contentType, byte[] data) {
-        Kategorie photo = new Kategorie();
-        photo.setName(contentType);
-        //photo.setId(UUID.randomUUID().toString());
-        photo.setTyp(fileName);
-        photo.setData(data);
+        Kategorie kategorie = new Kategorie();
+        kategorie.setName(contentType);
+        kategorie.setKategorieID(Integer.parseInt(UUID.randomUUID().toString()));
 
         //db.put(photo.getId(), photo);
-        kategorieRepository.save(photo);
+        kategorieRepository.save(kategorie);
 
-        return photo;
+        return kategorie;
     }
 }
