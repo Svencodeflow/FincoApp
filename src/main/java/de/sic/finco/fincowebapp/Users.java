@@ -10,11 +10,17 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Users {
     @Id @NotEmpty
     private String KdNr;
+    @NotEmpty
     private String userIBAN;
+    @NotEmpty
     private String vorname;
+    @NotEmpty
     private String nachname;
+    @NotEmpty
     private String eMail;
+    @NotEmpty
     private String passwortHash;
+    @NotEmpty
     private Date regDatum;
 
     public Users() {

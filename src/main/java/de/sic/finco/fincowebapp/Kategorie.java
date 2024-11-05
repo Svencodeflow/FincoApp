@@ -1,8 +1,7 @@
 package de.sic.finco.fincowebapp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.validation.constraints.NotEmpty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
