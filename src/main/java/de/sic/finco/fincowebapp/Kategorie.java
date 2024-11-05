@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.annotation.processing.Generated;
+
 @Table("KATEGORIE")
 public class Kategorie {
 

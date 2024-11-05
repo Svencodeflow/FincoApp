@@ -18,14 +18,13 @@ public class DownloadController {
     @GetMapping("/download/{id}")
     //public ResponseEntity<byte[]> download(@PathVariable String id) {
     public ResponseEntity<byte[]> download(@PathVariable Integer id) {
-        Kategorie photo = kategorieServiceService.get(id);
-        if(photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        Kategorie kategorie = kategorieServiceService.get(id);
+        if(kategorie == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-        byte[] data = photo.getData();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(photo.getName()));
-        ContentDisposition build = ContentDisposition.builder("attachment").filename(photo.getTyp()).build();
+        headers.setContentType(MediaType.valueOf(kategorie.getName()));
+        ContentDisposition build = ContentDisposition.builder("attachment").filename(kategorie.getTyp()).build();
         headers.setContentDisposition(build);
-        return new ResponseEntity<>(data, headers, HttpStatus.OK);
+        return new ResponseEntity<>(headers, HttpStatus.OK);
     }
 }
