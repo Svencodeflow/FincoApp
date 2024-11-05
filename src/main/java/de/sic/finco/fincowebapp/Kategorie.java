@@ -2,6 +2,7 @@ package de.sic.finco.fincowebapp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -9,34 +10,24 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Kategorie {
 
     @Id
-    private Integer id;
+    private int kategorieID;
 
     @NotEmpty
-    private int KategorieID;
-
     private String name;
+    @NotEmpty
     private String typ;
+    @NotEmpty
     private String k_Beschreibung;
-    @JsonIgnore
-    private byte[] data;
 
     public Kategorie() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public int getKategorieID() {
-        return KategorieID;
+        return kategorieID;
     }
 
     public void setKategorieID(int kategorieID) {
-        KategorieID = kategorieID;
+        this.kategorieID = kategorieID;
     }
 
     public String getName() {
@@ -61,13 +52,5 @@ public class Kategorie {
 
     public void setK_Beschreibung(String k_Beschreibung) {
         this.k_Beschreibung = k_Beschreibung;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
     }
 }

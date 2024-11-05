@@ -3,13 +3,13 @@ package de.sic.finco.fincowebapp;
 import java.util.Date;
 
 import jakarta.validation.constraints.NotEmpty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
 public class Users {
     @Id @NotEmpty
+    private String KdNr;
     private String userIBAN;
     private String vorname;
     private String nachname;
@@ -17,13 +17,15 @@ public class Users {
     private String passwortHash;
     private Date regDatum;
 
-    public Users(String userIBAN, String vorname, String nachname, String eMail, String passwortHash, Date regDatum) {
-        this.userIBAN = userIBAN;
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.eMail = eMail;
-        this.passwortHash = passwortHash;
-        this.regDatum = regDatum;
+    public Users() {
+    }
+
+    public String getKdNr() {
+        return KdNr;
+    }
+
+    public void setKdNr(String kdNr) {
+        KdNr = kdNr;
     }
 
     public String getUserIBAN() {
