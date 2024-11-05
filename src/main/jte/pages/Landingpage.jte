@@ -1,3 +1,7 @@
+<head>
+    <Link rel="stylesheet" href="landingpage.css" type="text/css"/>
+</head>
+
 @template.layout.main(content = @`
     <div class="flex items-center justify-center h-screen">
         <img id="logo1" src="/logo.png" alt="Logo" onclick="swapLogos()">
