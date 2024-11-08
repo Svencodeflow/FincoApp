@@ -77,7 +77,7 @@ public class Users {
     public Date getRegDatum() {
         return regDatum;
     }
-
+    
     public void setRegDatum(Date regDatum) {
         this.regDatum = regDatum;
     }
