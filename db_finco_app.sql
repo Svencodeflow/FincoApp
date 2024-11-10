@@ -5,7 +5,7 @@ USE `finco_app`;
   (`KategorieID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    `Name` VARCHAR(30) NOT NULL ,
    `Typ` VARCHAR(8) NOT NULL ,
-   `K_Beschreibung` VARCHAR(50) NOT NULL);
+   `Beschreibung` VARCHAR(50) NOT NULL);
 
    CREATE TABLE `users`
   (`KdNr` VARCHAR(50) NOT NULL PRIMARY KEY ,
