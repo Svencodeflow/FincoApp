@@ -7,9 +7,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
-public class Users {
+public class Users extends Data{
     @Id @NotEmpty
-    private String KdNr;
+    private String kdNr;
     @NotEmpty
     private String userIBAN;
     @NotEmpty
@@ -24,21 +24,26 @@ public class Users {
     private Date regDatum;
 
     public Users() {
+        super();
     }
 
-    public String getKdNr() {
-        return KdNr;
+    @Override
+    String getKdNr() {
+        return kdNr;
     }
 
-    public void setKdNr(String kdNr) {
-        KdNr = kdNr;
+    @Override
+    void setKdNr(String kdNr) {
+        this.kdNr = kdNr;
     }
 
-    public String getUserIBAN() {
+    @Override
+    String getIBAN() {
         return userIBAN;
     }
 
-    public void setUserIBAN(String userIBAN) {
+    @Override
+    void setIBAN(String userIBAN) {
         this.userIBAN = userIBAN;
     }
 
@@ -58,11 +63,11 @@ public class Users {
         this.nachname = nachname;
     }
 
-    public String geteMail() {
+    public String getEmail() {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
+    public void setEmail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -77,7 +82,7 @@ public class Users {
     public Date getRegDatum() {
         return regDatum;
     }
-    
+
     public void setRegDatum(Date regDatum) {
         this.regDatum = regDatum;
     }
