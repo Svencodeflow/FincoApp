@@ -15,4 +15,18 @@ public class Umsatz {
     private double betrag;
     @NotEmpty
     private Date datum;
+    @NotEmpty
+    private int kategorieID;
+    @NotEmpty
+    private String beschreibung;
+    @NotEmpty
+    private Date datum;
+    @NotEmpty
+    private Date datum;
+    @NotEmpty
+    private Date datum;
+    @NotEmpty
+    private Date datum;
+
+
 }
