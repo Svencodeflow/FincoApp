@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDate;
-
 @Table("UMSATZ")
 public class Umsatz extends Data{
     @Id
@@ -14,7 +12,7 @@ public class Umsatz extends Data{
     @NotEmpty
     private double betrag;
     @NotEmpty
-    private LocalDate datum;
+    private String datum;
     @NotEmpty
     private int kategorieID;
     @NotEmpty
@@ -48,11 +46,11 @@ public class Umsatz extends Data{
         this.betrag = betrag;
     }
 
-    public LocalDate getDatum() {
+    public String getDatum() {
         return datum;
     }
 
-    public void setDatum(LocalDate datum) {
+    public void setDatum(String datum) {
         this.datum = datum;
     }
 
