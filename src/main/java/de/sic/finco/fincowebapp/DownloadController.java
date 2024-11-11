@@ -9,16 +9,15 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class DownloadController {
 
-    private final KategorieService kategorieServiceService;
+    private final KategorieService kategorieService;
 
-    public DownloadController(KategorieService photosService) {
-        this.kategorieServiceService = photosService;
+    public DownloadController(KategorieService kategorieService) {
+        this.kategorieService = kategorieService;
     }
 
-    @GetMapping("/download/{id}")
-    //public ResponseEntity<byte[]> download(@PathVariable String id) {
+    @GetMapping("/download/{kategorieID}")
     public ResponseEntity<byte[]> download(@PathVariable Integer id) {
-        Kategorie kategorie = kategorieServiceService.get(id);
+        Kategorie kategorie = kategorieService.get(id);
         if(kategorie == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         HttpHeaders headers = new HttpHeaders();
