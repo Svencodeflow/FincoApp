@@ -21,6 +21,18 @@ public class Login extends Data{
     @NotEmpty
     private String status;
 
+    public Login() {
+        super();
+    }
+
+    public int getLoginID() {
+        return loginID;
+    }
+
+    public void setLoginID(int loginID) {
+        this.loginID = loginID;
+    }
+
     @Override
     String getKdNr() {
         return kdNr;
@@ -39,5 +51,29 @@ public class Login extends Data{
     @Override
     void setIBAN(String userIBAN) {
         this.userIBAN=userIBAN;
+    }
+
+    public LocalDateTime getLoginZeit() {
+        return loginZeit;
+    }
+
+    public void setLoginZeit(LocalDateTime loginZeit) {
+        this.loginZeit = loginZeit;
+    }
+
+    public String getIpAdresse() {
+        return ipAdresse;
+    }
+
+    public void setIpAdresse(String ipAdresse) {
+        this.ipAdresse = ipAdresse;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
