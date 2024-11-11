@@ -3,8 +3,6 @@ package de.sic.finco.fincowebapp;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
-
 public class Login extends Data{
 
     @Id
@@ -15,7 +13,7 @@ public class Login extends Data{
     @NotEmpty
     private String userIBAN;
     @NotEmpty
-    private LocalDateTime loginZeit;
+    private String loginZeit;
     @NotEmpty
     private String ipAdresse;
     @NotEmpty
@@ -53,11 +51,11 @@ public class Login extends Data{
         this.userIBAN=userIBAN;
     }
 
-    public LocalDateTime getLoginZeit() {
+    public String getLoginZeit() {
         return loginZeit;
     }
 
-    public void setLoginZeit(LocalDateTime loginZeit) {
+    public void setLoginZeit(String loginZeit) {
         this.loginZeit = loginZeit;
     }
 
