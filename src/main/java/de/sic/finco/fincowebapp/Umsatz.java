@@ -24,9 +24,9 @@ public class Umsatz extends Data{
     @NotEmpty
     private String userIBAN;
     @NotEmpty
-    private Date art;
+    private String art;
     @NotEmpty
-    private Date kundenReferenz;
+    private String kundenReferenz;
 
     public Umsatz() {
         super();
@@ -92,19 +92,19 @@ public class Umsatz extends Data{
         this.userIBAN=userIBAN;
     }
 
-    public Date getArt() {
+    public String getArt() {
         return art;
     }
 
-    public void setArt(Date art) {
+    public void setArt(String art) {
         this.art = art;
     }
 
-    public Date getKundenReferenz() {
+    public String getKundenReferenz() {
         return kundenReferenz;
     }
 
-    public void setKundenReferenz(Date kundenReferenz) {
+    public void setKundenReferenz(String kundenReferenz) {
         this.kundenReferenz = kundenReferenz;
     }
 }
