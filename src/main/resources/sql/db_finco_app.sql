@@ -20,7 +20,7 @@ USE `finco_app`;
   (`UmsatzID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    `Betrag` DECIMAL(10,2) NOT NULL ,
    `Datum` DATE NOT NULL ,
-   `kategorieID` INT NOT NULL ,
+   `KategorieID` INT NOT NULL ,
    `Beschreibung` VARCHAR(50) NOT NULL ,
    `KdNr` VARCHAR(50) NOT NULL ,
    `UserIBAN` VARCHAR(22) NOT NULL ,
