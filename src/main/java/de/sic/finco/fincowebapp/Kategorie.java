@@ -13,7 +13,6 @@ public class Kategorie {
     @Id
     @NotNull
     private int kategorieID;
-
     @NotNull
     private String name;
     @NotNull
