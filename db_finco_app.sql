@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `finco_app` COLLATE utf8_general_ci;
-USE `finco_app`;
+CREATE DATABASE IF NOT EXISTS `finco` COLLATE utf8_general_ci;
+USE `finco`;
 
   CREATE TABLE `kategorie`
   (`KategorieID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -37,3 +37,13 @@ USE `finco_app`;
     `IP_Adresse` VARCHAR(400) NOT NULL ,
     `Status` VARCHAR(1) NOT NULL ,
     FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`));
+
+    INSERT INTO `kategorie` (`KategorieID`, `Name`, `Typ`, `Beschreibung`) VALUES
+    (1, 'Bruttogehalt', 'Einnahme', 'Online übers Handy'),
+    (2, 'Sozialversicherungen', 'Ausgabe', 'Offline per Überweisung übers Bankautomat');
+
+    INSERT INTO `users` (`KdNr`, `UserIBAN`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
+    ('0123456789ABCDEF', 'DE02701500000000594937', 'Jane', 'Doe', 'jane.doe@gmail.com',
+     'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2024-11-12'),
+    ('FEDCBA9876543210', 'DE02700100800030876808', 'John', 'Doe', 'john.doe@appleid.com',
+     '027f505a89058a84673b9c1e49e28a217d5ce538ea86b7fe36be68518285d394', '2024-11-12');
