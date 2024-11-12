@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `finco_app` COLLATE utf8_general_ci;
-USE `finco_app`;
+CREATE DATABASE IF NOT EXISTS `finco` COLLATE utf8_general_ci;
+USE `finco`;
 
   CREATE TABLE `kategorie`
   (`KategorieID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
