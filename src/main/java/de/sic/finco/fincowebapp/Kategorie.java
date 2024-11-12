@@ -1,7 +1,7 @@
 package de.sic.finco.fincowebapp;
 
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -11,13 +11,14 @@ import javax.annotation.processing.Generated;
 public class Kategorie {
 
     @Id
+    @NotNull
     private int kategorieID;
 
-    @NotEmpty
+    @NotNull
     private String name;
-    @NotEmpty
+    @NotNull
     private String typ;
-    @NotEmpty
+    @NotNull
     private String k_Beschreibung;
 
     public Kategorie() {
