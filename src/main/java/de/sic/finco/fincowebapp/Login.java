@@ -1,22 +1,22 @@
 package de.sic.finco.fincowebapp;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
 public class Login extends Data{
 
     @Id
-    @NotEmpty
+    @NotNull
     private int loginID;
-    @NotEmpty
+    @NotNull
     private String kdNr;
-    @NotEmpty
+    @NotNull
     private String userIBAN;
-    @NotEmpty
+    @NotNull
     private String loginZeit;
-    @NotEmpty
+    @NotNull
     private String ipAdresse;
-    @NotEmpty
+    @NotNull
     private String status;
 
     public Login() {
