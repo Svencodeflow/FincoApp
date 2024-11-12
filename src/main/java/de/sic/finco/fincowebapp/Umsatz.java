@@ -1,29 +1,30 @@
 package de.sic.finco.fincowebapp;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("UMSATZ")
 public class Umsatz extends Data{
     @Id
-    @NotEmpty
+    @NotNull
     private int umsatzID;
-    @NotEmpty
+    @NotNull
     private double betrag;
-    @NotEmpty
+    @NotNull
     private String datum;
-    @NotEmpty
+    @NotNull
     private int kategorieID;
-    @NotEmpty
+    @NotNull
     private String beschreibung;
-    @NotEmpty
+    @NotNull
     private String kdNr;
-    @NotEmpty
+    @NotNull
     private String userIBAN;
-    @NotEmpty
+    @NotNull
     private String art;
-    @NotEmpty
+    @NotNull
     private String kundenReferenz;
 
     public Umsatz() {
