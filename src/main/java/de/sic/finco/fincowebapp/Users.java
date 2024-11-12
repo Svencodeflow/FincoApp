@@ -2,7 +2,6 @@ package de.sic.finco.fincowebapp;
 
 import java.util.Date;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
