@@ -3,24 +3,26 @@ package de.sic.finco.fincowebapp;
 import java.util.Date;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
 public class Users extends Data{
-    @Id @NotEmpty
+    @Id
+    @NotNull
     private String kdNr;
-    @NotEmpty
+    @NotNull
     private String userIBAN;
-    @NotEmpty
+    @NotNull
     private String vorname;
-    @NotEmpty
+    @NotNull
     private String nachname;
-    @NotEmpty
+    @NotNull
     private String eMail;
-    @NotEmpty
+    @NotNull
     private String passwortHash;
-    @NotEmpty
+    @NotNull
     private Date regDatum;
 
     public Users() {
