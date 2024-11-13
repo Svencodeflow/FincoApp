@@ -1,8 +1,12 @@
 package de.sic.finco.fincowebapp;
 
 public abstract class Data {
+    private String kdNr;
+    private String userIBAN;
 
-    public Data() {
+    public Data(String kdNr, String userIBAN) {
+        this.kdNr = kdNr;
+        this.userIBAN = userIBAN;
     }
 
     abstract String getKdNr();
