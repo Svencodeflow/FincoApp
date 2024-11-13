@@ -72,11 +72,11 @@
         }
 
         function skipSite() {
-            window.location.href = "/landingpage"
+            window.location.href = "/login"
         }
 
         function start() {
-            window.location.href = "/landingpage"
+            window.location.href = "/login"
         }
     </script>
 `)

@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
+    @GetMapping("/")
+    public String login() {
+
+        return "pages/Landingpage";
+    }
+
     @GetMapping("/login")
-    public String login(HttpServletRequest request, Model model, String error, String logout) {
+    public String home(HttpServletRequest request, Model model, String error, String logout) {
 
         if (error != null) {
             model.addAttribute("error", true);
@@ -20,8 +26,5 @@ public class LoginController {
         return "pages/login";
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "pages/home";
-    }
+
 }

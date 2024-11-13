@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/", "/login", "/error").permitAll()
+                    .requestMatchers( "/","/login", "/Landingpage" , "/error", "/static/**").permitAll()
                     .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -36,9 +36,9 @@ public class SecurityConfig {
                     .logoutSuccessUrl("/")
                     .permitAll()
             );
-
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
