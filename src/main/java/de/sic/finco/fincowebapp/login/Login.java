@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("LOGIN")
-public class Login extends Data {
+public class Login implements Data {
 
     @Id
     @NotNull

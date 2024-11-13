@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
-public class Users extends Data {
+public class Users implements Data {
     @Id
     @NotNull
     private String kdNr;

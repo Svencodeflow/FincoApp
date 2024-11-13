@@ -1,9 +1,6 @@
 package de.sic.finco.fincowebapp;
 
-public abstract class Data {
-
-    public Data() {
-    }
+public interface Data {
 
     public abstract String getKdNr();
     public abstract void setKdNr(String kdNr);
