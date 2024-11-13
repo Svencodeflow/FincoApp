@@ -1,8 +1,8 @@
 @template.layout.main(content = @`
     <div class="flex items-center justify-center h-screen">
-        <img id="logo1" src="/logo.png" alt="Logo" onclick="swapLogos()">
+        <img id="logo1" src="/images/logo.png" alt="Logo" onclick="swapLogos()">
         <div id="illu" class="flex flex-col items-center justify-center h-screen">
-            <img id="logo2" src="/Group.png" alt="Logo 2" style="display: none; z-index: auto">
+            <img id="logo2" src="/images/Group.png" alt="Logo 2" style="display: none; z-index: auto">
             <h1 id="text" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em;">Track your spend and income</h1>
             <p id="text_2" style="display: none; text-align: center; width: 30vw">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
 
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div id="group" class="flex flex-col items-center justify-center h-screen">
-            <img id="logo3" src="/Illustration.png" alt="Logo 3" style="display: none; z-index: auto">
+            <img id="logo3" src="/images/Illustration.png" alt="Logo 3" style="display: none; z-index: auto">
             <h1 id="text_1" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em">Analyze your spending</h1>
             <p id="text2" style="display: none; text-align: center; width: 30vw">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
 
