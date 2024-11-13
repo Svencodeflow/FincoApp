@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-public class DownloadController {
+public class KategorieDownloadController {
 
     private final KategorieService kategorieService;
 
-    public DownloadController(KategorieService kategorieService) {
+    public KategorieDownloadController(KategorieService kategorieService) {
         this.kategorieService = kategorieService;
     }
 
