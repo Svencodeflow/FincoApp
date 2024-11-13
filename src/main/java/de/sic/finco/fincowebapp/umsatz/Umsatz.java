@@ -72,22 +72,22 @@ public class Umsatz extends Data {
     }
 
     @Override
-    String getKdNr() {
+    public String getKdNr() {
         return kdNr;
     }
 
     @Override
-    void setKdNr(String kdNr) {
+    public void setKdNr(String kdNr) {
         this.kdNr=kdNr;
     }
 
     @Override
-    String getIBAN() {
+    public String getIBAN() {
         return userIBAN;
     }
 
     @Override
-    void setIBAN(String userIBAN) {
+    public void setIBAN(String userIBAN) {
         this.userIBAN=userIBAN;
     }
 
