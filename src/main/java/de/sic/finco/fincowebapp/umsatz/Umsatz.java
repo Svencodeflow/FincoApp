@@ -1,11 +1,12 @@
-package de.sic.finco.fincowebapp;
+package de.sic.finco.fincowebapp.umsatz;
 
+import de.sic.finco.fincowebapp.Data;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("UMSATZ")
-public class Umsatz extends Data{
+public class Umsatz extends Data {
     @Id
     @NotNull
     private int umsatzID;

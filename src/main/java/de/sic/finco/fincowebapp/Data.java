@@ -5,8 +5,8 @@ public abstract class Data {
     public Data() {
     }
 
-    abstract String getKdNr();
-    abstract void setKdNr(String kdNr);
-    abstract String getIBAN();
-    abstract void setIBAN(String userIBAN);
+    public abstract String getKdNr();
+    public abstract void setKdNr(String kdNr);
+    public abstract String getIBAN();
+    public abstract void setIBAN(String userIBAN);
 }

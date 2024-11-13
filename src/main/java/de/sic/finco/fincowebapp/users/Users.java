@@ -1,4 +1,4 @@
-package users;
+package de.sic.finco.fincowebapp.users;
 
 import java.util.Date;
 
@@ -30,23 +30,23 @@ public class Users extends Data {
     }
 
     @Override
-    String getKdNr() {
+    public String getKdNr() {
         return kdNr;
     }
 
     @Override
-    void setKdNr(String kdNr) {
-        this.kdNr = kdNr;
+    public void setKdNr(String kdNr) {
+        this.kdNr=kdNr;
     }
 
     @Override
-    String getIBAN() {
-        return userIBAN;
+    public String getIBAN() {
+        return kdNr;
     }
 
     @Override
-    void setIBAN(String userIBAN) {
-        this.userIBAN = userIBAN;
+    public void setIBAN(String userIBAN) {
+        this.userIBAN=userIBAN;
     }
 
     public String getVorname() {

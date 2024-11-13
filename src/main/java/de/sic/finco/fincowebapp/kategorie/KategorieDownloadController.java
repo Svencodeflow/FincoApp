@@ -1,4 +1,4 @@
-package kategorie;
+package de.sic.finco.fincowebapp.kategorie;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,11 +1,12 @@
-package de.sic.finco.fincowebapp;
+package de.sic.finco.fincowebapp.login;
 
+import de.sic.finco.fincowebapp.Data;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("LOGIN")
-public class Login extends Data{
+public class Login extends Data {
 
     @Id
     @NotNull
