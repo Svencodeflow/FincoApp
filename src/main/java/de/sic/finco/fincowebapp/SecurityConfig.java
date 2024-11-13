@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,28 +17,31 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain web(HttpSecurity http) throws AuthenticationException {
+    SecurityFilterChain web(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers( "/","/login", "/Landingpage" , "/error", "/static/**").permitAll()
-                    .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/dashboard", true)
-                    .permitAll()
-            )
-            .oauth2Login(oauth2 -> oauth2
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/dashboard", true)
-            )
-            .logout(logout -> logout
-                    .logoutSuccessUrl("/")
-                    .permitAll()
-            );
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/", "/login", "/Landingpage", "/error", "/static/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
+                        .permitAll()
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                );
+
+        // Allow static resources to be accessed without authentication
+        http.securityMatcher("/static/**");
+
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -57,3 +59,5 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(defaultUser);
     }
 }
+
+
