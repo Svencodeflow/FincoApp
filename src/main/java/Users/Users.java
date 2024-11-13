@@ -1,13 +1,14 @@
-package de.sic.finco.fincowebapp;
+package Users;
 
 import java.util.Date;
 
+import de.sic.finco.fincowebapp.Data;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
-public class Users extends Data{
+public class Users extends Data {
     @Id
     @NotNull
     private String kdNr;
