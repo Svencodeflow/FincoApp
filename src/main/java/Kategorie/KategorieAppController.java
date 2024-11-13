@@ -1,4 +1,4 @@
-package de.sic.finco.fincowebapp;
+package Kategorie;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

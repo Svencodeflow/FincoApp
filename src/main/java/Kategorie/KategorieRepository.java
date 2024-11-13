@@ -1,4 +1,4 @@
-package de.sic.finco.fincowebapp;
+package Kategorie;
 
 import org.springframework.data.repository.CrudRepository;
 
