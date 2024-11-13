@@ -1,4 +1,4 @@
-package Kategorie;
+package kategorie;
 
 import org.springframework.data.repository.CrudRepository;
 

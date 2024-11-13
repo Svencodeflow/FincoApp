@@ -1,4 +1,4 @@
-package Kategorie;
+package kategorie;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;

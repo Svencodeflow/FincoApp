@@ -1,4 +1,4 @@
-package Kategorie;
+package kategorie;
 
 
 import jakarta.validation.constraints.NotNull;

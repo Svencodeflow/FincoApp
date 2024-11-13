@@ -1,4 +1,4 @@
-package Kategorie;
+package kategorie;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
