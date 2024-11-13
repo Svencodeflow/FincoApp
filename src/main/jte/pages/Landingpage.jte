@@ -77,5 +77,6 @@
 
         function start() {
             window.location.href = "/landingpage"
-        }    </script>
+        }
+    </script>
 `)
