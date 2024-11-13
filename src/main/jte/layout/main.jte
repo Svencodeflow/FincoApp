@@ -1,7 +1,8 @@
 @param gg.jte.Content content
 
+
 <!doctype html>
-<html lang="de">
+<html lang="de" class="h-full bg-white dark:bg-black dark:text-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
