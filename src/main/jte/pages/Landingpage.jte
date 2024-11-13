@@ -3,8 +3,8 @@
         <img id="logo1" src="/logo.png" alt="Logo" onclick="swapLogos()">
         <div id="illu" class="flex flex-col items-center justify-center h-screen">
             <img id="logo2" src="/Group.png" alt="Logo 2" style="display: none; z-index: auto">
-            <h1 id="text" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em">Track your spend and income</h1>
-            <p id="text_2" style="display: none; text-align: center">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+            <h1 id="text" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em;">Track your spend and income</h1>
+            <p id="text_2" style="display: none; text-align: center; width: 30vw">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
 
             <div class="flex" style="margin-top: 5em">
                 <button id="skip" onclick="skipSite()" style="display: none;margin-right: 5em">Skip</button>
@@ -14,7 +14,7 @@
         <div id="group" class="flex flex-col items-center justify-center h-screen">
             <img id="logo3" src="/Illustration.png" alt="Logo 3" style="display: none; z-index: auto">
             <h1 id="text_1" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em">Analyze your spending</h1>
-            <p id="text2" style="display: none; text-align: center">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+            <p id="text2" style="display: none; text-align: center; width: 30vw">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
 
             <div>
                 <button id="getStart" onclick="start()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: none; margin-top: 5em">Get Started <span class="ml-2">&#8594;</span></button>
