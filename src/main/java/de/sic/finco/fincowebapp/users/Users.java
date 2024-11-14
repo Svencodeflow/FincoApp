@@ -26,7 +26,7 @@ public class Users implements Data {
     private Date regDatum;
 
     public Users() {
-        super();
+
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Users implements Data {
 
     @Override
     public String getIBAN() {
-        return kdNr;
+        return userIBAN;
     }
 
     @Override
