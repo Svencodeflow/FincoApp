@@ -10,6 +10,8 @@ USE `finco`;
    CREATE TABLE `users`
   (`KdNr` VARCHAR(50) NOT NULL PRIMARY KEY ,
    `UserIBAN` VARCHAR(22) NOT NULL ,
+   `Oauth1` VARCHAR(30) ,
+   `Oauth2` VARCHAR(30) ,
    `Vorname` VARCHAR(30) NOT NULL ,
    `Nachname` VARCHAR(30) NOT NULL ,
    `E_Mail` VARCHAR(50) NOT NULL ,
@@ -47,16 +49,16 @@ USE `finco`;
     (6, 'Freizeit', 'Ausgabe', 'Ausgaben für Freizeitaktivitäten'),
     (7, 'Zinsen', 'Einnahme', 'Zinsen aus Ersparnissen');
 
-    INSERT INTO `users` (`KdNr`, `UserIBAN`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
-    ('0123456789ABCDEF', 'DE02701500000000594937', 'Jane', 'Doe', 'jane.doe@gmail.com',
+    INSERT INTO `users` (`KdNr`, `UserIBAN`, `Oauth1`, `Oauth2`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
+    ('0123456789ABCDEF', 'DE02701500000000594937', NULL, NULL, 'Jane', 'Doe', 'jane.doe@gmail.com',
      'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2024-11-12'),
-    ('1EDCBA9876543210', 'DE02700100800030876808', 'John', 'Doe', 'john.doe@appleid.com',
+    ('1EDCBA9876543210', 'DE02700100800030876808', NULL, NULL, 'John', 'Doe', 'john.doe@appleid.com',
      '027f505a89058a84673b9c1e49e28a217d5ce538ea86b7fe36be68518285d394', '2024-11-12'),
-    ('2A3B4C5D6E7F8G9H', 'DE02700100800030876809', 'Alice', 'Smith', 'alice.smith@example.com',
+    ('2A3B4C5D6E7F8G9H', 'DE02700100800030876809', NULL, NULL, 'Alice', 'Smith', 'alice.smith@example.com',
      'b3b5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13'),
-    ('2B3C4D5E6F7G8H9I', 'DE02700100800030876810', 'Bob', 'Johnson', 'bob.johnson@example.com',
+    ('2B3C4D5E6F7G8H9I', 'DE02700100800030876810', NULL, NULL, 'Bob', 'Johnson', 'bob.johnson@example.com',
      'c3c5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13'),
-    ('3C4D5E6F7G8H9I0J', 'DE02700100800030876811', 'Charlie', 'Williams', 'charlie.williams@example.com',
+    ('3C4D5E6F7G8H9I0J', 'DE02700100800030876811', NULL, NULL, 'Charlie', 'Williams', 'charlie.williams@example.com',
     'd3d5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13');
 
      INSERT INTO `umsatz`
