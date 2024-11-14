@@ -1,6 +1,5 @@
 package de.sic.finco.fincowebapp.login;
 
-import de.sic.finco.fincowebapp.kategorie.Kategorie;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

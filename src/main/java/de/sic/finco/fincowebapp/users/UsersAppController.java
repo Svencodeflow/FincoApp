@@ -1,6 +1,5 @@
 package de.sic.finco.fincowebapp.users;
 
-import de.sic.finco.fincowebapp.kategorie.Kategorie;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,10 +14,10 @@ import java.io.IOException;
 @Controller
 public class UsersAppController {
 
-    private final UsersService kategorieService;
+    private final UsersService usersService;
 
-    public UsersAppController(UsersService kategorieService) {
-        this.kategorieService = kategorieService;
+    public UsersAppController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @GetMapping({"/"})
@@ -27,31 +26,31 @@ public class UsersAppController {
         return "index";
     }
 
-    @GetMapping({"/kategorie"})
+    @GetMapping({"/users"})
     @ResponseBody
-    public Iterable<Kategorie> get() {
-        return kategorieService.get();
+    public Iterable<Users> get() {
+        return usersService.get();
     }
 
-    @GetMapping({"/kategorie/{ID}"})
+    @GetMapping({"/users/{kdNr}"})
     @ResponseBody
-    public Kategorie get(@PathVariable Integer id) {
-        Kategorie kategorie = (Kategorie) this.kategorieService.get(id);
-        if(kategorie == null) {
+    public Users get(@PathVariable String kdNr) {
+        Users users = (Users) this.usersService.get(kdNr);
+        if(users == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return kategorie;
+            return users;
         }
     }
 
-    @DeleteMapping ({"/kategorie/{kategorieID}"})
-    public void delete(@PathVariable Integer id) {
-        kategorieService.remove(id);
+    @DeleteMapping ({"/users/{kdNr}"})
+    public void delete(@PathVariable String kdNr) {
+        usersService.remove(kdNr);
     }
 
-    @PostMapping ({"/kategorie"})
+    @PostMapping ({"/users"})
     @ResponseBody
-    public Kategorie create(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+    public Users create(@RequestPart("users") @Valid MultipartFile file) throws IOException {
+        return usersService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }

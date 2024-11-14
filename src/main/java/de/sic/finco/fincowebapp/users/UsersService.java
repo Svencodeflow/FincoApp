@@ -8,29 +8,29 @@ import java.util.UUID;
 @Service
 public class UsersService {
 
-    private final UsersRepository kategorieRepository;
+    private final UsersRepository usersRepository;
 
-    public UsersService(UsersRepository kategorieRepository) {
-        this.kategorieRepository = kategorieRepository;
+    public UsersService(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
     }
 
-    public Iterable<Kategorie> get() {
-        return kategorieRepository.findAll();
+    public Iterable<Users> get() {
+        return usersRepository.findAll();
     }
 
-    public Kategorie get(Integer id) {
-        return kategorieRepository.findById(id).orElse(null);
+    public Users get(String kdNr) {
+        return usersRepository.findById(kdNr).orElse(null);
     }
 
-    public void remove(Integer id) {
-        kategorieRepository.deleteById(id);
+    public void remove(String kdNr) {
+        usersRepository.deleteById(kdNr);
     }
 
-    public Kategorie save(String fileName, String contentType, byte[] data) {
-        Kategorie kategorie = new Kategorie();
-        kategorie.setName(contentType);
-        kategorie.setKategorieID(Integer.parseInt(UUID.randomUUID().toString()));
-        kategorieRepository.save(kategorie);
-        return kategorie;
+    public Users save(String fileName, String contentType, byte[] data) {
+        Users users = new Users();
+        users.setVorname(contentType);
+        users.setKdNr(String.valueOf(UUID.randomUUID().toString()));
+        usersRepository.save(users);
+        return users;
     }
 }
