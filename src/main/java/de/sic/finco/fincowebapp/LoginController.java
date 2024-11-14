@@ -15,6 +15,12 @@ public class LoginController {
         return "pages/Landingpage";
     }
 
+    @GetMapping("/register")
+    public String register() {
+
+        return "pages/register";
+    }
+
     @GetMapping("/login")
     public String home(HttpServletRequest request, Model model, String error, String logout) {
 

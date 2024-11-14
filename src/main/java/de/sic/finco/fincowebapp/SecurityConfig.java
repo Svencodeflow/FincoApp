@@ -25,12 +25,17 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/login", "/Landingpage", "/error", "/static/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/login", "/Landingpage", "/register", "/error", "/static/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/dashboard", true)
+                        .permitAll()
+                )
+                .formLogin(form -> form
+                        .loginPage("/register")
+                        .defaultSuccessUrl("/login", true)
                         .permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
@@ -40,6 +45,9 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
                         .permitAll()
+                )
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/register")
                 );
 
         return http.build();
