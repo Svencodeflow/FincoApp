@@ -1,4 +1,4 @@
-package de.sic.finco.fincowebapp.kategorie;
+package de.sic.finco.fincowebapp;
 
 
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ public class Kategorie {
     @NotNull
     private String typ;
     @NotNull
-    private String k_Beschreibung;
+    private String beschreibung;
 
     public Kategorie() {
     }
@@ -46,10 +46,10 @@ public class Kategorie {
     }
 
     public String getK_Beschreibung() {
-        return k_Beschreibung;
+        return beschreibung;
     }
 
-    public void setK_Beschreibung(String k_Beschreibung) {
-        this.k_Beschreibung = k_Beschreibung;
+    public void setK_Beschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 }
