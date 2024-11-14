@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class RegistrationController {
+public class MainController {
 
+    @GetMapping("/")
+    public String login() {
+
+        return "pages/Landingpage";
+    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -20,16 +25,24 @@ public class RegistrationController {
     }
 
     @PostMapping("/register") // Assuming your registration endpoint is "/register"
-    public String processRegistration( @ModelAttribute User user, BindingResult bindingResult) {
+    public String processRegistration(@ModelAttribute User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "pages/register"; // Re-render the form with validation errors
+            return "pages/register";
         }
-
-        // Save the user to the database (using UserService)
-        //userService.saveUser(user);
-
-        // Redirect to a success page or perform other actions after successful registration
 
         return "redirect:/success";
     }
+
+    @GetMapping("/login")
+    public String home(HttpServletRequest request, Model model, String error, String logout) {
+
+        if (error != null) {
+            model.addAttribute("error", true);
+            model.addAttribute("errorMessage", "Invalid username or password");
+        }
+
+        return "pages/login";
+    }
+
+
 }

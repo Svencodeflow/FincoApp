@@ -11,11 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -33,11 +29,6 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
-                .formLogin(form -> form
-                        .loginPage("/register")
-                        .defaultSuccessUrl("/login", true)
-                        .permitAll()
-                )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
                         .defaultSuccessUrl("/dashboard", true)
@@ -45,9 +36,6 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
                         .permitAll()
-                )
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/register")
                 );
 
         return http.build();

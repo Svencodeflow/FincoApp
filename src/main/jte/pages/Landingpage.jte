@@ -25,12 +25,12 @@
 
     <script>
         function swapLogos() {
-            var logo1 = document.getElementById('logo1');
-            var logo2 = document.getElementById('logo2');
-            var text = document.getElementById('text');
-            var text2 = document.getElementById('text_2');
-            var but1 = document.getElementById('skip');
-            var but2 = document.getElementById('next');
+            let logo1 = document.getElementById('logo1');
+            let logo2 = document.getElementById('logo2');
+            let text = document.getElementById('text');
+            let text2 = document.getElementById('text_2');
+            let but1 = document.getElementById('skip');
+            let but2 = document.getElementById('next');
 
             if (logo1.style.display !== 'none') {
                 logo1.style.display = 'none';
@@ -50,11 +50,11 @@
         }
 
         function swapSite() {
-            var fLookAfterLogo = document.getElementById('illu');
-            var fLookAfterIllu = document.getElementById("logo3");
-            var fLookAfterText = document.getElementById("text_1");
-            var fLookAfterText2 = document.getElementById("text2");
-            var button = document.getElementById("getStart");
+            let fLookAfterLogo = document.getElementById('illu');
+            let fLookAfterIllu = document.getElementById("logo3");
+            let fLookAfterText = document.getElementById("text_1");
+            let fLookAfterText2 = document.getElementById("text2");
+            let button = document.getElementById("getStart");
 
             if (fLookAfterLogo.style.display !== 'none') {
                 fLookAfterLogo.style.display = 'none';

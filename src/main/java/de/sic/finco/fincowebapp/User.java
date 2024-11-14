@@ -1,21 +1,16 @@
 package de.sic.finco.fincowebapp;
 
-import org.springframework.data.annotation.Id;
+
 
 import java.sql.Date;
 
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-    @NotBlank
-    @Size(min = 3, max = 50)
     private String username;
     private String RegNumber;
     private String name;
     private String preName;
-    @Email
-    @NotBlank
     private String email;
     private String gender;
     private String password;
