@@ -18,18 +18,18 @@ public class UmsatzService {
         return umsatzRepository.findAll();
     }
 
-    public Umsatz get(String kdNr) {
-        return umsatzRepository.findById(Integer.valueOf(kdNr)).orElse(null);
+    public Umsatz get(Integer id) {
+        return umsatzRepository.findById(id).orElse(null);
     }
 
-    public void remove(String kdNr) {
-        umsatzRepository.deleteById(Integer.valueOf(kdNr));
+    public void remove(Integer id) {
+        umsatzRepository.deleteById(id);
     }
 
     public Umsatz save(String fileName, String beschreibung, byte[] data) {
         Umsatz umsatz = new Umsatz();
         umsatz.setBeschreibung(beschreibung);
-        umsatz.setKdNr(String.valueOf(UUID.randomUUID().toString()));
+        umsatz.setUmsatzID(Integer.parseInt(UUID.randomUUID().toString()));
         umsatzRepository.save(umsatz);
         return umsatz;
     }

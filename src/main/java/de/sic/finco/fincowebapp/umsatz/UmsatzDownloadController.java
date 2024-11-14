@@ -17,9 +17,9 @@ public class UmsatzDownloadController {
         this.umsatzService = umsatzService;
     }
 
-    @GetMapping("/download/{kdNr}")
-    public ResponseEntity<byte[]> download(@PathVariable String kdNr) {
-        Umsatz umsatz = umsatzService.get(kdNr);
+    @GetMapping("/download/{id}")
+    public ResponseEntity<byte[]> download(@PathVariable Integer id) {
+        Umsatz umsatz = umsatzService.get(id);
         if(umsatz == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         HttpHeaders headers = new HttpHeaders();

@@ -1,6 +1,5 @@
 package de.sic.finco.fincowebapp.umsatz;
 
-import de.sic.finco.fincowebapp.kategorie.Kategorie;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -33,10 +32,10 @@ public class UmsatzAppController {
         return umsatzService.get();
     }
 
-    @GetMapping({"/umsatz/{kdNr}"})
+    @GetMapping({"/umsatz/{ID}"})
     @ResponseBody
-    public Umsatz get(@PathVariable String kdNr) {
-        Umsatz umsatz = (Umsatz) this.umsatzService.get(kdNr);
+    public Umsatz get(@PathVariable Integer id) {
+        Umsatz umsatz = (Umsatz) this.umsatzService.get(id);
         if(umsatz == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -44,9 +43,9 @@ public class UmsatzAppController {
         }
     }
 
-    @DeleteMapping ({"/umsatz/{kdNr}"})
-    public void delete(@PathVariable String kdNr) {
-        umsatzService.remove(kdNr);
+    @DeleteMapping ({"/umsatz/{id}"})
+    public void delete(@PathVariable Integer id) {
+        umsatzService.remove(id);
     }
 
     @PostMapping ({"/umsatz"})
