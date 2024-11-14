@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
+
 @Table("LOGIN")
 public class Login extends Data{
 
@@ -15,7 +17,7 @@ public class Login extends Data{
     @NotNull
     private String userIBAN;
     @NotNull
-    private String loginZeit;
+    private LocalDateTime loginZeit;
     @NotNull
     private String ipAdresse;
     @NotNull
@@ -53,11 +55,11 @@ public class Login extends Data{
         this.userIBAN=userIBAN;
     }
 
-    public String getLoginZeit() {
+    public LocalDateTime getLoginZeit() {
         return loginZeit;
     }
 
-    public void setLoginZeit(String loginZeit) {
+    public void setLoginZeit(LocalDateTime loginZeit) {
         this.loginZeit = loginZeit;
     }
 

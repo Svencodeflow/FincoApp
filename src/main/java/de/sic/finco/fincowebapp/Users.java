@@ -1,11 +1,11 @@
 package de.sic.finco.fincowebapp;
 
-import java.util.Date;
-
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.LocalDate;
 
 @Table("USERS")
 public class Users extends Data{
@@ -27,7 +27,7 @@ public class Users extends Data{
     @NotNull
     private String passwortHash;
     @NotNull
-    private Date regDatum;
+    private LocalDate regDatum;
 
     public Users() {
 
@@ -103,11 +103,11 @@ public class Users extends Data{
         this.passwortHash = passwortHash;
     }
 
-    public Date getRegDatum() {
+    public LocalDate getRegDatum() {
         return regDatum;
     }
 
-    public void setRegDatum(Date regDatum) {
+    public void setRegDatum(LocalDate regDatum) {
         this.regDatum = regDatum;
     }
 }
