@@ -2,17 +2,22 @@ package de.sic.finco.fincowebapp;
 
 import java.util.Date;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("USERS")
-public class Users implements Data{
+public class Users extends Data{
     @Id
     @NotNull
     private String kdNr;
     @NotNull
     private String userIBAN;
+    @Nullable
+    private String oAuth1;
+    @Nullable
+    private String oAuth2;
     @NotNull
     private String vorname;
     @NotNull
@@ -48,6 +53,24 @@ public class Users implements Data{
         this.userIBAN=userIBAN;
     }
 
+    @Nullable
+    public String getoAuth1() {
+        return oAuth1;
+    }
+
+    public void setoAuth1(@Nullable String oAuth1) {
+        this.oAuth1 = oAuth1;
+    }
+
+    @Nullable
+    public String getoAuth2() {
+        return oAuth2;
+    }
+
+    public void setoAuth2(@Nullable String oAuth2) {
+        this.oAuth2 = oAuth2;
+    }
+
     public String getVorname() {
         return vorname;
     }
@@ -64,11 +87,11 @@ public class Users implements Data{
         this.nachname = nachname;
     }
 
-    public String getEmail() {
+    public String geteMail() {
         return eMail;
     }
 
-    public void setEmail(String eMail) {
+    public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 

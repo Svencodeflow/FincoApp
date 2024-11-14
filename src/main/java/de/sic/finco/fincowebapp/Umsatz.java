@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("UMSATZ")
-public class Umsatz implements Data{
+public class Umsatz extends Data{
     @Id
     @NotNull
     private int umsatzID;

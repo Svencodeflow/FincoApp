@@ -1,9 +1,12 @@
 package de.sic.finco.fincowebapp;
 
-public interface Data {
+public abstract class Data {
 
-    String getKdNr();
-    void setKdNr(String kdNr);
-    String getIBAN();
-    void setIBAN(String userIBAN);
+    public Data() {
+    }
+
+    abstract String getKdNr();
+    abstract void setKdNr(String kdNr);
+    abstract String getIBAN();
+    abstract void setIBAN(String userIBAN);
 }

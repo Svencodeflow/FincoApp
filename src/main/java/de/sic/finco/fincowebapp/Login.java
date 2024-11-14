@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("LOGIN")
-public class Login implements Data{
+public class Login extends Data{
 
     @Id
     @NotNull
