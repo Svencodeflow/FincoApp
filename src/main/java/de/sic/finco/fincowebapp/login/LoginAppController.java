@@ -15,10 +15,10 @@ import java.io.IOException;
 @Controller
 public class LoginAppController {
 
-    private final LoginService kategorieService;
+    private final LoginService loginService;
 
-    public LoginAppController(LoginService kategorieService) {
-        this.kategorieService = kategorieService;
+    public LoginAppController(LoginService loginService) {
+        this.loginService = loginService;
     }
 
     @GetMapping({"/"})
@@ -27,31 +27,31 @@ public class LoginAppController {
         return "index";
     }
 
-    @GetMapping({"/kategorie"})
+    @GetMapping({"/login"})
     @ResponseBody
-    public Iterable<Kategorie> get() {
-        return kategorieService.get();
+    public Iterable<Login> get() {
+        return loginService.get();
     }
 
-    @GetMapping({"/kategorie/{ID}"})
+    @GetMapping({"/login/{ID}"})
     @ResponseBody
-    public Kategorie get(@PathVariable Integer id) {
-        Kategorie kategorie = (Kategorie) this.kategorieService.get(id);
-        if(kategorie == null) {
+    public Login get(@PathVariable Integer id) {
+        Login login = (Login) this.loginService.get(id);
+        if(login == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return kategorie;
+            return login;
         }
     }
 
-    @DeleteMapping ({"/kategorie/{kategorieID}"})
+    @DeleteMapping ({"/login/{loginID}"})
     public void delete(@PathVariable Integer id) {
-        kategorieService.remove(id);
+        loginService.remove(id);
     }
 
-    @PostMapping ({"/kategorie"})
+    @PostMapping ({"/login"})
     @ResponseBody
-    public Kategorie create(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+    public Login create(@RequestPart("login") @Valid MultipartFile file) throws IOException {
+        return loginService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }

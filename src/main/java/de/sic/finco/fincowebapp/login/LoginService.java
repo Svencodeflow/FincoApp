@@ -8,29 +8,29 @@ import java.util.UUID;
 @Service
 public class LoginService {
 
-    private final LoginRepository kategorieRepository;
+    private final LoginRepository loginRepository;
 
-    public LoginService(LoginRepository kategorieRepository) {
-        this.kategorieRepository = kategorieRepository;
+    public LoginService(LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
     }
 
-    public Iterable<Kategorie> get() {
-        return kategorieRepository.findAll();
+    public Iterable<Login> get() {
+        return loginRepository.findAll();
     }
 
-    public Kategorie get(Integer id) {
-        return kategorieRepository.findById(id).orElse(null);
+    public Login get(Integer id) {
+        return loginRepository.findById(id).orElse(null);
     }
 
     public void remove(Integer id) {
-        kategorieRepository.deleteById(id);
+        loginRepository.deleteById(id);
     }
 
-    public Kategorie save(String fileName, String contentType, byte[] data) {
-        Kategorie kategorie = new Kategorie();
-        kategorie.setName(contentType);
-        kategorie.setKategorieID(Integer.parseInt(UUID.randomUUID().toString()));
-        kategorieRepository.save(kategorie);
-        return kategorie;
+    public Login save(String fileName, String contentType, byte[] data) {
+        Login login = new Login();
+        login.setLoginZeit(contentType);
+        login.setIpAdresse(String.valueOf(UUID.randomUUID().toString()));
+        loginRepository.save(login);
+        return login;
     }
 }
