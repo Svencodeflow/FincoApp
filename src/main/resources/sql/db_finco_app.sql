@@ -39,22 +39,43 @@ USE `finco`;
     FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`));
 
     INSERT INTO `kategorie` (`KategorieID`, `Name`, `Typ`, `Beschreibung`) VALUES
-    (1, 'Bruttogehalt', 'Einnahme', 'Online übers Handy'),
-    (2, 'Sozialversicherungen', 'Ausgabe', 'Offline per Überweisung übers Bankautomat');
+    (1, 'Bruttogehalt', 'Einnahme', 'Monatliches Gehalt vor den Abzügen'),
+    (2, 'Nettogehalt', 'Einnahme', 'Monatliches Gehalt nach den Abzügen'),
+    (3, 'Miete', 'Ausgabe', 'Monatliche Miete für die Wohnung'),
+    (4, 'Lebensmittel', 'Ausgabe', 'Einkäufe im Supermarkt'),
+    (5, 'Sozialversicherungen', 'Ausgabe', 'Kranken-/Renten-/Arbeitslosen-/Pflegeversicherung'),
+    (6, 'Freizeit', 'Ausgabe', 'Ausgaben für Freizeitaktivitäten'),
+    (7, 'Zinsen', 'Einnahme', 'Zinsen aus Ersparnissen');
 
     INSERT INTO `users` (`KdNr`, `UserIBAN`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
     ('0123456789ABCDEF', 'DE02701500000000594937', 'Jane', 'Doe', 'jane.doe@gmail.com',
      'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2024-11-12'),
-    ('FEDCBA9876543210', 'DE02700100800030876808', 'John', 'Doe', 'john.doe@appleid.com',
-     '027f505a89058a84673b9c1e49e28a217d5ce538ea86b7fe36be68518285d394', '2024-11-12');
+    ('1EDCBA9876543210', 'DE02700100800030876808', 'John', 'Doe', 'john.doe@appleid.com',
+     '027f505a89058a84673b9c1e49e28a217d5ce538ea86b7fe36be68518285d394', '2024-11-12'),
+    ('2A3B4C5D6E7F8G9H', 'DE02700100800030876809', 'Alice', 'Smith', 'alice.smith@example.com',
+     'b3b5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13'),
+    ('2B3C4D5E6F7G8H9I', 'DE02700100800030876810', 'Bob', 'Johnson', 'bob.johnson@example.com',
+     'c3c5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13'),
+    ('3C4D5E6F7G8H9I0J', 'DE02700100800030876811', 'Charlie', 'Williams', 'charlie.williams@example.com',
+    'd3d5060d9e3c4e8b7c1b5f3a0e7f4e5d2d5b8b7a8a7b8b8b7c9c3d8d9e0f2e3f', '2024-11-13');
 
      INSERT INTO `umsatz`
      (`UmsatzID`, `Betrag`, `Datum`, `KategorieID`, `Beschreibung`, `KdNr`, `UserIBAN`, `Art`, `Kundenreferenz`)
-     VALUES (1, '35.00', '2024-11-12', '1', 'Einnahme online übers Handy', '0123456789ABCDEF',
-     'DE02701500000000594937', 'A', '001122334455667788990987654321'),
-     (2, '-25.00', '2024-11-12', '2', 'Ausgabe offline per Überweisung übers Bankautomat', 'FEDCBA9876543210',
-     'DE02700100800030876808', 'B', '998877665544332211001234567890');
+     VALUES
+     (1, '42500.00', '2024-11-12', '1', 'Monatliches Bruttogehalt für Oktober 2024', '0123456789ABCDEF',
+     'DE02701500000000594937', 'E', '001122334455667788990987654321'),
+     (2, '40000.00', '2024-11-12', '2', 'Monatliches Nettogehalt für Oktober 2024', '1EDCBA9876543210',
+     'DE02700100800030876808', 'E', '998877665544332211001234567890'),
+     (3, '-1500.00', '2024-11-13', '3', 'Monatliche Miete für November 2024', '2A3B4C5D6E7F8G9H',
+      'DE02700100800030876809', 'A', '001122334455667788990987654322'),
+     (4, '-200.00', '2024-11-13', '4', 'Lebensmittel-Einkäufe für November 2024', '2B3C4D5E6F7G8H9I',
+      'DE02700100800030876810', 'A', '998877665544332211001234567891'),
+     (5, '-50.00', '2024-11-13', '6', 'Freizeitaktivitäten im November 2024', '3C4D5E6F7G8H9I0J',
+      'DE02700100800030876811', 'A', '123456789012345678901234567890');
 
      INSERT INTO `login` (`Login_ID`, `KdNr`, `UserIBAN`, `LoginZeit`, `IP_Adresse`, `Status`) VALUES
      (1, '0123456789ABCDEF', 'DE02701500000000594937', '2024-11-12 23:01:45.000000', '192.168.64.1', 'Y'),
-     (2, 'FEDCBA9876543210', 'DE02700100800030876808', '2024-11-12 23:01:45.000000', '192.168.127.254', 'N');
+     (2, '1EDCBA9876543210', 'DE02700100800030876808', '2024-11-12 23:01:45.000000', '192.168.127.254', 'N'),
+     (3, '2A3B4C5D6E7F8G9H', 'DE02700100800030876809', '2024-11-13 09:00:00.000000', '192.168.1.1', 'Y'),
+     (4, '2B3C4D5E6F7G8H9I', 'DE02700100800030876810', '2024-11-13 12:30:00.000000', '192.168.1.2', 'N'),
+     (5, '3C4D5E6F7G8H9I0J', 'DE02700100800030876811', '2024-11-13 15:45:00.000000', '192.168.1.3', 'Y');
