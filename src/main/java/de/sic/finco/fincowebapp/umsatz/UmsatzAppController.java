@@ -15,10 +15,10 @@ import java.io.IOException;
 @Controller
 public class UmsatzAppController {
 
-    private final UmsatzService kategorieService;
+    private final UmsatzService umsatzService;
 
-    public UmsatzAppController(UmsatzService kategorieService) {
-        this.kategorieService = kategorieService;
+    public UmsatzAppController(UmsatzService umsatzService) {
+        this.umsatzService = umsatzService;
     }
 
     @GetMapping({"/"})
@@ -27,31 +27,31 @@ public class UmsatzAppController {
         return "index";
     }
 
-    @GetMapping({"/kategorie"})
+    @GetMapping({"/umsatz"})
     @ResponseBody
-    public Iterable<Kategorie> get() {
-        return kategorieService.get();
+    public Iterable<Umsatz> get() {
+        return umsatzService.get();
     }
 
-    @GetMapping({"/kategorie/{ID}"})
+    @GetMapping({"/umsatz/{kdNr}"})
     @ResponseBody
-    public Kategorie get(@PathVariable Integer id) {
-        Kategorie kategorie = (Kategorie) this.kategorieService.get(id);
-        if(kategorie == null) {
+    public Umsatz get(@PathVariable String kdNr) {
+        Umsatz umsatz = (Umsatz) this.umsatzService.get(kdNr);
+        if(umsatz == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return kategorie;
+            return umsatz;
         }
     }
 
-    @DeleteMapping ({"/kategorie/{kategorieID}"})
-    public void delete(@PathVariable Integer id) {
-        kategorieService.remove(id);
+    @DeleteMapping ({"/umsatz/{kdNr}"})
+    public void delete(@PathVariable String kdNr) {
+        umsatzService.remove(kdNr);
     }
 
-    @PostMapping ({"/kategorie"})
+    @PostMapping ({"/umsatz"})
     @ResponseBody
-    public Kategorie create(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+    public Umsatz create(@RequestPart("umsatz") @Valid MultipartFile file) throws IOException {
+        return umsatzService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }

@@ -8,29 +8,29 @@ import java.util.UUID;
 @Service
 public class UmsatzService {
 
-    private final UmsatzRepository kategorieRepository;
+    private final UmsatzRepository umsatzRepository;
 
-    public UmsatzService(UmsatzRepository kategorieRepository) {
-        this.kategorieRepository = kategorieRepository;
+    public UmsatzService(UmsatzRepository umsatzRepository) {
+        this.umsatzRepository = umsatzRepository;
     }
 
-    public Iterable<Kategorie> get() {
-        return kategorieRepository.findAll();
+    public Iterable<Umsatz> get() {
+        return umsatzRepository.findAll();
     }
 
-    public Kategorie get(Integer id) {
-        return kategorieRepository.findById(id).orElse(null);
+    public Umsatz get(String kdNr) {
+        return umsatzRepository.findById(Integer.valueOf(kdNr)).orElse(null);
     }
 
-    public void remove(Integer id) {
-        kategorieRepository.deleteById(id);
+    public void remove(String kdNr) {
+        umsatzRepository.deleteById(Integer.valueOf(kdNr));
     }
 
-    public Kategorie save(String fileName, String contentType, byte[] data) {
-        Kategorie kategorie = new Kategorie();
-        kategorie.setName(contentType);
-        kategorie.setKategorieID(Integer.parseInt(UUID.randomUUID().toString()));
-        kategorieRepository.save(kategorie);
-        return kategorie;
+    public Umsatz save(String fileName, String beschreibung, byte[] data) {
+        Umsatz umsatz = new Umsatz();
+        umsatz.setBeschreibung(beschreibung);
+        umsatz.setKdNr(String.valueOf(UUID.randomUUID().toString()));
+        umsatzRepository.save(umsatz);
+        return umsatz;
     }
 }
