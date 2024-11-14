@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
+    Boolean hasAccount = true; //! Datenbank anknüpfen zwecks account abfrage.
+
     @GetMapping("/")
     public String login() {
-
-        return "pages/Landingpage";
+        if(hasAccount) {
+            return "pages/Homesite";
+        }else {
+            return "pages/Landingpage";
+        }
     }
 
     @GetMapping("/login")
@@ -25,6 +30,8 @@ public class LoginController {
 
         return "pages/login";
     }
+
+
 
 
 }
