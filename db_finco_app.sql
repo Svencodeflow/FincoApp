@@ -49,7 +49,7 @@ USE `finco`;
     (6, 'Freizeit', 'Ausgabe', 'Ausgaben für Freizeitaktivitäten'),
     (7, 'Zinsen', 'Einnahme', 'Zinsen aus Ersparnissen');
 
-    INSERT INTO `users` (`KdNr`, `UserIBAN`, `Oauth1`, `Oauth2`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
+    INSERT INTO `users` (`KdNr`, `UserIBAN`, `OAuth1`, `OAuth2`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`) VALUES
     ('0123456789ABCDEF', 'DE02701500000000594937', NULL, NULL, 'Jane', 'Doe', 'jane.doe@gmail.com',
      'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2024-11-12'),
     ('1EDCBA9876543210', 'DE02700100800030876808', NULL, NULL, 'John', 'Doe', 'john.doe@appleid.com',
