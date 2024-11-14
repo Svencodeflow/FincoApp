@@ -9,9 +9,9 @@ USE `finco`;
    
    CREATE TABLE `users`
   (`KdNr` VARCHAR(50) NOT NULL PRIMARY KEY ,
-   `UserIBAN` VARCHAR(22) NOT NULL ,
-   `Oauth1` VARCHAR(30) ,
-   `Oauth2` VARCHAR(30) ,
+   `UserIBAN` VARCHAR(32) NOT NULL ,
+   `Oauth1` VARCHAR(32) ,
+   `Oauth2` VARCHAR(32) ,
    `Vorname` VARCHAR(30) NOT NULL ,
    `Nachname` VARCHAR(30) NOT NULL ,
    `E_Mail` VARCHAR(50) NOT NULL ,
