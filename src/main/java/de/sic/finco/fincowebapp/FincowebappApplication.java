@@ -9,5 +9,5 @@ public class FincowebappApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FincowebappApplication.class, args);
 	}
-
+	
 }
