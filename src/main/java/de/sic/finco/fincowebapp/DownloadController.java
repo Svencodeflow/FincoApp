@@ -9,20 +9,20 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class DownloadController {
 
-    private final KategorieService kategorieService;
+    private final UmsatzService umsatzService;
 
-    public DownloadController(KategorieService kategorieService) {
-        this.kategorieService = kategorieService;
+    public DownloadController(UmsatzService umsatzService) {
+        this.umsatzService = umsatzService;
     }
 
-    @GetMapping("/download/{kategorieID}")
+    @GetMapping("/download/{umsatzID}")
     public ResponseEntity<byte[]> download(@PathVariable Integer id) {
-        Kategorie kategorie = kategorieService.get(id);
-        if(kategorie == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        Umsatz umsatz = umsatzService.get(id);
+        if(umsatz == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(kategorie.getName()));
-        ContentDisposition build = ContentDisposition.builder("attachment").filename(kategorie.getTyp()).build();
+        headers.setContentType(MediaType.valueOf(String.valueOf(umsatz.getBetrag())));
+        ContentDisposition build = ContentDisposition.builder("attachment").filename(umsatz.getArt()).build();
         headers.setContentDisposition(build);
         return new ResponseEntity<>(headers, HttpStatus.OK);
     }

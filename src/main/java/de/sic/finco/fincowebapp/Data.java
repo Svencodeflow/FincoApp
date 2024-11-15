@@ -1,13 +1,15 @@
 package de.sic.finco.fincowebapp;
 
-public abstract class Data {
-    int id;
-    String KdNr;
-    String userIBAN;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
 
-    public Data(int id, String kdNr, String userIBAN) {
-        this.id = id;
-        this.KdNr = kdNr;
+public abstract class Data {
+    @Id
+    @NotNull String kdNr;
+    @NotNull String userIBAN;
+
+    public Data(String kdNr, String userIBAN) {
+        this.kdNr = kdNr;
         this.userIBAN = userIBAN;
     }
 

@@ -23,8 +23,8 @@ public class Login extends Data{
     @NotNull
     private String status;
 
-    public Login() {
-
+    public Login(String kdNr, String userIBAN) {
+        super(kdNr, userIBAN);
     }
 
     public int getLoginID() {

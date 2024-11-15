@@ -20,16 +20,12 @@ public class Umsatz extends Data{
     @NotNull
     private String beschreibung;
     @NotNull
-    private String kdNr;
-    @NotNull
-    private String userIBAN;
-    @NotNull
     private String art;
     @NotNull
     private String kundenReferenz;
 
-    public Umsatz() {
-        super();
+    public Umsatz(String kdNr, String userIBAN) {
+        super(kdNr, userIBAN);
     }
 
     public int getUmsatzID() {

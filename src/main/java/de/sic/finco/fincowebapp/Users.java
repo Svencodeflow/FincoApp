@@ -9,11 +9,6 @@ import java.time.LocalDate;
 
 @Table("USERS")
 public class Users extends Data{
-    @Id
-    @NotNull
-    private String kdNr;
-    @NotNull
-    private String userIBAN;
     @Nullable
     private String oAuth1;
     @Nullable
@@ -29,7 +24,8 @@ public class Users extends Data{
     @NotNull
     private LocalDate regDatum;
 
-    public Users() {
+    public Users(String kdNr, String userIBAN) {
+        super(kdNr, userIBAN);
 
     }
 
