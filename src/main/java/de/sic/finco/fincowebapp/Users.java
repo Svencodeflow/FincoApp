@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDate;
 
 @Table("USERS")
-public class Users extends Data{
+public class Users{
     @Id
     @NotNull
     private String kdNr;
@@ -33,22 +33,18 @@ public class Users extends Data{
 
     }
 
-    @Override
     public String getKdNr() {
         return kdNr;
     }
 
-    @Override
     public void setKdNr(String kdNr) {
         this.kdNr=kdNr;
     }
 
-    @Override
     public String getIBAN() {
         return userIBAN;
     }
 
-    @Override
     public void setIBAN(String userIBAN) {
         this.userIBAN=userIBAN;
     }

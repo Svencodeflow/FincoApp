@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDate;
 
 @Table("UMSATZ")
-public class Umsatz extends Data{
+public class Umsatz {
     @Id
     @NotNull
     private int umsatzID;
@@ -32,7 +32,7 @@ public class Umsatz extends Data{
     private Double ausgabeLimit;
 
     public Umsatz() {
-        super();
+
     }
 
     public int getUmsatzID() {
@@ -75,22 +75,18 @@ public class Umsatz extends Data{
         this.beschreibung = beschreibung;
     }
 
-    @Override
     public String getKdNr() {
         return kdNr;
     }
 
-    @Override
     public void setKdNr(String kdNr) {
         this.kdNr=kdNr;
     }
 
-    @Override
     public String getIBAN() {
         return userIBAN;
     }
 
-    @Override
     public void setIBAN(String userIBAN) {
         this.userIBAN=userIBAN;
     }
