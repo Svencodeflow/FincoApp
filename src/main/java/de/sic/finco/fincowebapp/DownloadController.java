@@ -21,8 +21,8 @@ public class DownloadController {
         if(umsatz == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(String.valueOf(umsatz.getBetrag())));
-        ContentDisposition build = ContentDisposition.builder("attachment").filename(umsatz.getArt()).build();
+        headers.setContentType(MediaType.valueOf(umsatz.getArt()));
+        ContentDisposition build = ContentDisposition.builder("attachment").filename(umsatz.getBeschreibung()).build();
         headers.setContentDisposition(build);
         return new ResponseEntity<>(headers, HttpStatus.OK);
     }
