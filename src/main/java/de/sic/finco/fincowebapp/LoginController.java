@@ -32,7 +32,7 @@ public class LoginController {
         }
         model.addAttribute("messages", messages);
 
-        return "pages/Landingpage";
+        return "pages/Landing";
     }
 
     @GetMapping("/login")

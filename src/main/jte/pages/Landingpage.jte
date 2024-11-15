@@ -11,7 +11,7 @@
         <div id="illu" class="flex flex-col items-center justify-center h-screen">
             <img id="logo2" src="/images/Group.png" alt="Logo 2" style="display: none; z-index: auto">
             <h1 id="text" class="text-5xl" style="display: none; margin-bottom: 1em; margin-top: 1em;">Track your spend and income</h1>
-            <p id="text_2" style="display: none; text-align: center; width: 30vw">${messages["income"]}</p>
+            <p id="text_2" style="display: none; text-align: center; width: 30vw">income</p>
 
             <div class="flex" style="margin-top: 5em">
                 <button id="skip" onclick="skipSite()" style="display: none;margin-right: 5em">Skip</button>
