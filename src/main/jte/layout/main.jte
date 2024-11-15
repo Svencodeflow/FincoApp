@@ -14,6 +14,16 @@
 </head>
 <body>
 <main>
+    <!--<navbar>
+        <div>
+            <img src="/images/logo.png" alt="logo" />
+            <h1>Finco</h1>
+            <div>
+                <button type="button"/>
+                <button type="button"/>
+            </div>
+        </div>
+    </navbar>-->
     <div id="content">
         ${content}
     </div>
