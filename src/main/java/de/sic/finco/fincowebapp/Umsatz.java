@@ -1,5 +1,6 @@
 package de.sic.finco.fincowebapp;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -23,6 +24,8 @@ public class Umsatz extends Data{
     private String art;
     @NotNull
     private String kundenReferenz;
+    @Nullable
+    private Double ausgabeLimit;
 
     public Umsatz(String kdNr, String userIBAN) {
         super(kdNr, userIBAN);
@@ -102,5 +105,14 @@ public class Umsatz extends Data{
 
     public void setKundenReferenz(String kundenReferenz) {
         this.kundenReferenz = kundenReferenz;
+    }
+
+    @Nullable
+    public Double getAusgabeLimit() {
+        return ausgabeLimit;
+    }
+
+    public void setAusgabeLimit(@Nullable Double ausgabeLimit) {
+        this.ausgabeLimit = ausgabeLimit;
     }
 }
