@@ -1,9 +1,5 @@
 package de.sic.finco.fincowebapp;
 
-
-
-import java.sql.Date;
-
 public class User {
 
     private Long id;
