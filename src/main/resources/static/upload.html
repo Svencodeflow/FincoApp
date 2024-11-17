@@ -15,7 +15,7 @@
         async function uploadFile() {
             let formData = new FormData();
             formData.append("data", fileupload.files[0]);
-            await fetch('http://localhost:8080/photos', {
+            await fetch('jdbc:mariadb://144.76.112.176:3306/finco', {
                 method: "POST",
                 body: formData
             }).then(result => result.text())
