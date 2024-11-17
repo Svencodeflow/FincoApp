@@ -1,8 +1,6 @@
 spring:
-  web:
-    resources:
-      static-locations: classpath:/static/
-
+  messages:
+    basename: messages
   security:
     oauth2:
       client:
