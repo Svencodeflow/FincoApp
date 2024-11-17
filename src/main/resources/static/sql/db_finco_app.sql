@@ -42,9 +42,11 @@ USE `finco`;
      FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`));
 
     CREATE TABLE `limits`
-    (`KdNr` VARCHAR(50) NOT NULL PRIMARY KEY,
+    (`LimitID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	   `KdNr` VARCHAR(50) NOT NULL ,
      `KategorieID` INT NOT NULL  ,
      `Ausgabelimit` DECIMAL(10,2) NOT NULL ,
+	    FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`),
       FOREIGN KEY (`KategorieID`) REFERENCES `kategorie` (`KategorieID`));
 
     INSERT INTO `kategorie` (`KategorieID`, `Name`, `Typ`, `Beschreibung`) VALUES
@@ -90,8 +92,8 @@ USE `finco`;
      (4, '2B3C4D5E6F7G8H9I', 'DE02700100800030876810', '2024-11-13 12:30:00.000000', '192.168.1.2', 'N'),
      (5, '3C4D5E6F7G8H9I0J', 'DE02700100800030876811', '2024-11-13 15:45:00.000000', '192.168.1.3', 'Y');
 
-     INSERT INTO `limits` (`KdNr`, `KategorieID`, `Ausgabelimit`) VALUES
-     ('2A3B4C5D6E7F8G9H', '3', '2000.00'),
-     ('2B3C4D5E6F7G8H9I', '4', '500.00'),
-     ('3C4D5E6F7G8H9I0J', '5', '5000.00'),
-     ('3D4D5E6F7G8H9I0J', '6', '200.00');
+     INSERT INTO `limits` (`LimitID`, `KdNr`, `KategorieID`, `Ausgabelimit`) VALUES
+     (1, '0123456789ABCDEF', '3', '2000.00'),
+     (2, '1EDCBA9876543210', '4', '500.00'),
+     (3, '2A3B4C5D6E7F8G9H', '5', '5000.00'),
+     (4, '2B3C4D5E6F7G8H9I', '6', '200.00');
