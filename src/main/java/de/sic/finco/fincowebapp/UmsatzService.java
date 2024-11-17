@@ -27,7 +27,7 @@ public class UmsatzService {
     public Umsatz save(Double betrag, String kategorieID, byte[] data) {
         Umsatz umsatz = new Umsatz();
         umsatz.setBetrag(betrag);
-        umsatz.setKategorieID(Integer.parseInt(UUID.randomUUID().toString()));
+        umsatz.setUmsatzID(Integer.parseInt(UUID.randomUUID().toString()));
         umsatzRepository.save(umsatz);
         return umsatz;
     }
