@@ -2,20 +2,36 @@ package de.sic.finco.fincowebapp;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 @Controller
 public class MainController {
 
     @GetMapping("/")
-    public String login() {
+    public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
+        Locale locale = lang != null ? new Locale(lang) : Locale.getDefault();
+        LocaleContextHolder.setLocale(locale);
 
-        return "pages/Landingpage";
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+        Map<String, String> messages = new HashMap<>();
+        for (String key : bundle.keySet()) {
+            messages.put(key, bundle.getString(key));
+        }
+        model.addAttribute("messages", messages);
+
+        return "pages/Landing";
     }
 
     @GetMapping("/register")
