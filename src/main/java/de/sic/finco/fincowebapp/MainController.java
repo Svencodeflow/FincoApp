@@ -2,22 +2,25 @@ package de.sic.finco.fincowebapp;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 public class MainController {
+
+    public MainController(UmsatzService umsatzService) {
+        this.umsatzService = umsatzService;
+    }
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
@@ -36,12 +39,12 @@ public class MainController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User()); // Create an empty User object for the form
+        model.addAttribute("user", new Users()); // Create an empty User object for the form
         return "pages/register"; // Return the registration template name
     }
 
     @PostMapping("/register") // Assuming your registration endpoint is "/register"
-    public String processRegistration(@ModelAttribute User user, BindingResult bindingResult) {
+    public String processRegistration(@ModelAttribute Users user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "pages/register";
         }
@@ -58,6 +61,39 @@ public class MainController {
         }
 
         return "pages/login";
+    }
+
+    // test
+
+    private final UmsatzService umsatzService;
+
+
+    @GetMapping({"/umsatz"})
+    @ResponseBody
+    public Iterable<Umsatz> get() {
+        return umsatzService.get();
+    }
+
+    @GetMapping({"/umsatz/{ID}"})
+    @ResponseBody
+    public Umsatz get(@PathVariable Integer id) {
+        Umsatz umsatz = (Umsatz) this.umsatzService.get(id);
+        if(umsatz == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            return umsatz;
+        }
+    }
+
+    @DeleteMapping ({"/umsatz/{umsatzID}"})
+    public void delete(@PathVariable Integer id) {
+        umsatzService.remove(id);
+    }
+
+    @PostMapping ({"/umsatz"})
+    @ResponseBody
+    public Umsatz create(@RequestPart("umsatz") @Valid MultipartFile file) throws IOException {
+        return umsatzService.save(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
     }
 
 
