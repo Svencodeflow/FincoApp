@@ -1,0 +1,29 @@
+spring:
+  messages:
+    basename: messages
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 383068209036-ii6u0s8dq48i300a81l8jisf7mepk6dh.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            scope:
+              - user:email
+              - read:user
+
+gg:
+  jte:
+    developmentMode: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: ERROR #change to DEBUG or INFO for more information about spring security
