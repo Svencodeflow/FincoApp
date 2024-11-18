@@ -4,49 +4,49 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("LIMITS")
+@Table("limits")
 public class Limits {
     @Id @NotNull
-    private int limitID;
+    private int limitid;
     @NotNull
-    private String kdNr;
+    private String kdnr;
     @NotNull
-    private int kategorieID;
+    private int kategorieid;
     @NotNull
-    private double ausgabeLimit;
+    private double ausgabelimit;
 
     public Limits() {
     }
 
-    public int getLimitID() {
-        return limitID;
+    public int getLimitid() {
+        return limitid;
     }
 
-    public void setLimitID(int limitID) {
-        this.limitID = limitID;
+    public void setLimitid(int limitid) {
+        this.limitid = limitid;
     }
 
-    public String getKdNr() {
-        return kdNr;
+    public String getKdnr() {
+        return kdnr;
     }
 
-    public void setKdNr(String kdNr) {
-        this.kdNr = kdNr;
+    public void setKdnr(String kdnr) {
+        this.kdnr = kdnr;
     }
 
-    public int getKategorieID() {
-        return kategorieID;
+    public int getKategorieid() {
+        return kategorieid;
     }
 
-    public void setKategorieID(int kategorieID) {
-        this.kategorieID = kategorieID;
+    public void setKategorieid(int kategorieid) {
+        this.kategorieid = kategorieid;
     }
 
-    public double getAusgabeLimit() {
-        return ausgabeLimit;
+    public double getAusgabelimit() {
+        return ausgabelimit;
     }
 
-    public void setAusgabeLimit(double ausgabeLimit) {
-        this.ausgabeLimit = ausgabeLimit;
+    public void setAusgabelimit(double ausgabelimit) {
+        this.ausgabelimit = ausgabelimit;
     }
 }

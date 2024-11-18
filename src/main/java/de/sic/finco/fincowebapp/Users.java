@@ -7,64 +7,64 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table("USERS")
+@Table("users")
 public class Users{
     @Id
     @NotNull
-    private String kdNr;
+    private String kdnr;
     @NotNull
-    private String userIBAN;
+    private String useriban;
     @Nullable
-    private String oAuth1;
+    private String oauth1;
     @Nullable
-    private String oAuth2;
+    private String oauth2;
     @NotNull
     private String vorname;
     @NotNull
     private String nachname;
     @NotNull
-    private String eMail;
+    private String email;
     @NotNull
-    private String passwortHash;
+    private String passworthash;
     @NotNull
-    private LocalDate regDatum;
+    private LocalDate regdatum;
 
     public Users() {
 
     }
 
-    public String getKdNr() {
-        return kdNr;
+    public String getKdnr() {
+        return kdnr;
     }
 
-    public void setKdNr(String kdNr) {
-        this.kdNr=kdNr;
+    public void setKdnr(String kdnr) {
+        this.kdnr = kdnr;
     }
 
-    public String getIBAN() {
-        return userIBAN;
+    public String getUseriban() {
+        return useriban;
     }
 
-    public void setIBAN(String userIBAN) {
-        this.userIBAN=userIBAN;
-    }
-
-    @Nullable
-    public String getoAuth1() {
-        return oAuth1;
-    }
-
-    public void setoAuth1(@Nullable String oAuth1) {
-        this.oAuth1 = oAuth1;
+    public void setUseriban(String useriban) {
+        this.useriban = useriban;
     }
 
     @Nullable
-    public String getoAuth2() {
-        return oAuth2;
+    public String getOauth1() {
+        return oauth1;
     }
 
-    public void setoAuth2(@Nullable String oAuth2) {
-        this.oAuth2 = oAuth2;
+    public void setOauth1(@Nullable String oauth1) {
+        this.oauth1 = oauth1;
+    }
+
+    @Nullable
+    public String getOauth2() {
+        return oauth2;
+    }
+
+    public void setOauth2(@Nullable String oauth2) {
+        this.oauth2 = oauth2;
     }
 
     public String getVorname() {
@@ -83,27 +83,27 @@ public class Users{
         this.nachname = nachname;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPasswortHash() {
-        return passwortHash;
+    public String getPassworthash() {
+        return passworthash;
     }
 
-    public void setPasswortHash(String passwortHash) {
-        this.passwortHash = passwortHash;
+    public void setPassworthash(String passworthash) {
+        this.passworthash = passworthash;
     }
 
-    public LocalDate getRegDatum() {
-        return regDatum;
+    public LocalDate getRegdatum() {
+        return regdatum;
     }
 
-    public void setRegDatum(LocalDate regDatum) {
-        this.regDatum = regDatum;
+    public void setRegdatum(LocalDate regdatum) {
+        this.regdatum = regdatum;
     }
 }

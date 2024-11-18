@@ -1,15 +1,16 @@
+
 package de.sic.finco.fincowebapp;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("KATEGORIE")
+@Table("kategorie")
 public class Kategorie {
 
     @Id
     @NotNull
-    private int kategorieID;
+    private int kategorieid;
     @NotNull
     private String name;
     @NotNull
@@ -20,12 +21,12 @@ public class Kategorie {
     public Kategorie() {
     }
 
-    public int getKategorieID() {
-        return kategorieID;
+    public int getKategorieid() {
+        return kategorieid;
     }
 
-    public void setKategorieID(int kategorieID) {
-        this.kategorieID = kategorieID;
+    public void setKategorieid(int kategorieid) {
+        this.kategorieid = kategorieid;
     }
 
     public String getName() {
@@ -44,11 +45,11 @@ public class Kategorie {
         this.typ = typ;
     }
 
-    public String getK_Beschreibung() {
+    public String getBeschreibung() {
         return beschreibung;
     }
 
-    public void setK_Beschreibung(String beschreibung) {
+    public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
     }
 }
