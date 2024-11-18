@@ -11,15 +11,15 @@ public class Login{
 
     @Id
     @NotNull
-    private int loginID;
+    private int loginid;
     @NotNull
-    private String kdNr;
+    private String kdnr;
     @NotNull
-    private String userIBAN;
+    private String useriban;
     @NotNull
-    private LocalDateTime loginZeit;
+    private LocalDateTime loginzeit;
     @NotNull
-    private String ipAdresse;
+    private String ipadresse;
     @NotNull
     private String status;
 
@@ -27,44 +27,44 @@ public class Login{
 
     }
 
-    public int getLoginID() {
-        return loginID;
+    public int getLoginid() {
+        return loginid;
     }
 
-    public void setLoginID(int loginID) {
-        this.loginID = loginID;
+    public void setLoginid(int loginid) {
+        this.loginid = loginid;
     }
 
-    public String getKdNr() {
-        return kdNr;
+    public String getKdnr() {
+        return kdnr;
     }
 
-    public void setKdNr(String kdNr) {
-        this.kdNr = kdNr;
+    public void setKdnr(String kdnr) {
+        this.kdnr = kdnr;
     }
 
-    public String getIBAN() {
-        return userIBAN;
+    public String getIban() {
+        return useriban;
     }
 
-    public void setIBAN(String userIBAN) {
-        this.userIBAN=userIBAN;
+    public void setIban(String useriban) {
+        this.useriban=useriban;
     }
 
-    public LocalDateTime getLoginZeit() {
-        return loginZeit;
+    public LocalDateTime getLoginzeit() {
+        return loginzeit;
     }
 
-    public void setLoginZeit(LocalDateTime loginZeit) {
-        this.loginZeit = loginZeit;
+    public void setLoginzeit(LocalDateTime loginzeit) {
+        this.loginzeit = loginzeit;
     }
 
-    public String getIpAdresse() {
-        return ipAdresse;
+    public String getIpadresse() {
+        return ipadresse;
     }
 
-    public void setIpAdresse(String ipAdresse) {
-        this.ipAdresse = ipAdresse;
+    public void setIpadresse(String ipadresse) {
+        this.ipadresse = ipadresse;
     }
 
     public String getStatus() {
