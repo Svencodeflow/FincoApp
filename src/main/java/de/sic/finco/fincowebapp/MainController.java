@@ -3,6 +3,10 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import net.minidev.json.JSONArray;
+import net.minidev.json.parser.ParseException;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.*;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
@@ -21,6 +26,8 @@ public class MainController {
     public MainController(MainService umsatzService) {
         this.umsatzService = umsatzService;
     }
+
+    private final MainService umsatzService;
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
@@ -63,10 +70,6 @@ public class MainController {
         return "pages/login";
     }
 
-    // test
-
-    private final MainService umsatzService;
-
 
     @GetMapping({"/umsatz"})
     @ResponseBody
@@ -74,7 +77,7 @@ public class MainController {
         return umsatzService.get();
     }
 
-    @GetMapping({"/umsatz/{ID}"})
+    @GetMapping({"/umsatz/{id}"})
     @ResponseBody
     public Umsatz get(@PathVariable Integer id) {
         Umsatz umsatz = (Umsatz) this.umsatzService.get(id);
@@ -85,7 +88,7 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/umsatz/{umsatzID}"})
+    @DeleteMapping ({"/umsatz/{Umsatzid}"})
     public void delete(@PathVariable Integer id) {
         umsatzService.remove(id);
     }
@@ -96,5 +99,16 @@ public class MainController {
         return umsatzService.save(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
     }
 
+    //Finnhub.io API
+    private String apiKey = "1f7aa873-b5cb-4353-a577-efa99b39e046";
 
+    @GetMapping("/crypto")
+    public String getCryptoData(Model model) {
+        String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=" + apiKey;
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.getForObject(url, String.class);
+
+        model.addAttribute("cryptoData", response);
+        return "pages/Landing";
+    }
 }

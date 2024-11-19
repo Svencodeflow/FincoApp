@@ -4,6 +4,7 @@
 @param String errorMessage = null
 @param CsrfHiddenInput csrfHiddenInput
 
+
 @template.layout.main(
 content = @`
     <div class="min-h-screen flex items-center justify-center">
