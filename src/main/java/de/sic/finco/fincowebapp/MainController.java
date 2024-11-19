@@ -77,7 +77,7 @@ public class MainController {
     @GetMapping({"/umsatz/{ID}"})
     @ResponseBody
     public Umsatz get(@PathVariable Integer id) {
-        Umsatz umsatz = (Umsatz) this.umsatzService.get(id);
+        Umsatz umsatz = (Umsatz) this.umsatzService.get();
         if(umsatz == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
