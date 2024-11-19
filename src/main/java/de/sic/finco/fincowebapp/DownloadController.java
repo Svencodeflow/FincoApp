@@ -9,9 +9,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class DownloadController {
 
-    private final MainService umsatzService;
+    private final UmsatzService umsatzService;
 
-    public DownloadController(MainService umsatzService) {
+    public DownloadController(UmsatzService umsatzService) {
         this.umsatzService = umsatzService;
     }
 

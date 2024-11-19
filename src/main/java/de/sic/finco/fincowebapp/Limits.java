@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("LIMITS")
+@Table("limits")
 public class Limits {
     @Id @NotNull
     private int limitid;

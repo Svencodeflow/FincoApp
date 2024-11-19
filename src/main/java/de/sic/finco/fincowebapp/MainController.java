@@ -18,7 +18,7 @@ import java.util.*;
 @Controller
 public class MainController {
 
-    public MainController(MainService umsatzService) {
+    public MainController(UmsatzService umsatzService) {
         this.umsatzService = umsatzService;
     }
 
@@ -65,7 +65,7 @@ public class MainController {
 
     // test
 
-    private final MainService umsatzService;
+    private final UmsatzService umsatzService;
 
 
     @GetMapping({"/umsatz"})

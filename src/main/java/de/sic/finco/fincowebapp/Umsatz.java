@@ -7,40 +7,40 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table("UMSATZ")
+@Table("umsatz")
 public class Umsatz {
     @Id
     @NotNull
-    private int umsatzID;
+    private int umsatzid;
     @NotNull
     private double betrag;
     @NotNull
     private LocalDate datum;
     @NotNull
-    private int kategorieID;
+    private int kategorieid;
     @NotNull
     private String beschreibung;
     @NotNull
-    private String kdNr;
+    private String kdnr;
     @NotNull
-    private String userIBAN;
+    private String useriban;
     @NotNull
     private String art;
     @NotNull
-    private String kundenReferenz;
+    private String kundenreferenz;
     @Nullable
-    private Double ausgabeLimit;
+    private Double ausgabelimit;
 
     public Umsatz() {
 
     }
 
-    public int getUmsatzID() {
-        return umsatzID;
+    public int getUmsatzid() {
+        return umsatzid;
     }
 
-    public void setUmsatzID(int umsatzID) {
-        this.umsatzID = umsatzID;
+    public void setUmsatzid(int umsatzid) {
+        this.umsatzid = umsatzid;
     }
 
     public double getBetrag() {
@@ -59,12 +59,12 @@ public class Umsatz {
         this.datum = datum;
     }
 
-    public int getKategorieID() {
-        return kategorieID;
+    public int getKategorieid() {
+        return kategorieid;
     }
 
-    public void setKategorieID(int kategorieID) {
-        this.kategorieID = kategorieID;
+    public void setKategorieid(int kategorieid) {
+        this.kategorieid = kategorieid;
     }
 
     public String getBeschreibung() {
@@ -75,20 +75,20 @@ public class Umsatz {
         this.beschreibung = beschreibung;
     }
 
-    public String getKdNr() {
-        return kdNr;
+    public String getKdnr() {
+        return kdnr;
     }
 
-    public void setKdNr(String kdNr) {
-        this.kdNr=kdNr;
+    public void setKdnr(String kdnr) {
+        this.kdnr = kdnr;
     }
 
-    public String getIBAN() {
-        return userIBAN;
+    public String getUseriban() {
+        return useriban;
     }
 
-    public void setIBAN(String userIBAN) {
-        this.userIBAN=userIBAN;
+    public void setUseriban(String useriban) {
+        this.useriban = useriban;
     }
 
     public String getArt() {
@@ -99,20 +99,20 @@ public class Umsatz {
         this.art = art;
     }
 
-    public String getKundenReferenz() {
-        return kundenReferenz;
+    public String getKundenreferenz() {
+        return kundenreferenz;
     }
 
-    public void setKundenReferenz(String kundenReferenz) {
-        this.kundenReferenz = kundenReferenz;
+    public void setKundenreferenz(String kundenreferenz) {
+        this.kundenreferenz = kundenreferenz;
     }
 
     @Nullable
-    public Double getAusgabeLimit() {
-        return ausgabeLimit;
+    public Double getAusgabelimit() {
+        return ausgabelimit;
     }
 
-    public void setAusgabeLimit(@Nullable Double ausgabeLimit) {
-        this.ausgabeLimit = ausgabeLimit;
+    public void setAusgabelimit(@Nullable Double ausgabelimit) {
+        this.ausgabelimit = ausgabelimit;
     }
 }

@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class MainService {
-    private final MainRepository umsatzRepository;
+public class UmsatzService {
+    private final UmsatzRepository umsatzRepository;
 
-    public MainService(MainRepository umsatzRepository) {
+    public UmsatzService(UmsatzRepository umsatzRepository) {
         this.umsatzRepository = umsatzRepository;
     }
 
@@ -27,7 +27,7 @@ public class MainService {
     public Umsatz save(Double betrag, String kategorieID, byte[] data) {
         Umsatz umsatz = new Umsatz();
         umsatz.setBetrag(betrag);
-        umsatz.setUmsatzID(Integer.parseInt(UUID.randomUUID().toString()));
+        umsatz.setUmsatzid(Integer.parseInt(UUID.randomUUID().toString()));
         umsatzRepository.save(umsatz);
         return umsatz;
     }
