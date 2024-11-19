@@ -63,7 +63,15 @@ public class MainController {
         return "pages/login";
     }
 
-    // test
+    @GetMapping("/transactions")
+    public String transactions() {
+        return "transactions";
+    }
+
+    @GetMapping("/csv")
+    public String csv() {
+        return "csv";
+    }
 
     private final MainService umsatzService;
 
