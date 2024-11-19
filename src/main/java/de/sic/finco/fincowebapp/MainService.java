@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class UmsatzService {
-    private final UmsatzRepository umsatzRepository;
+public class MainService {
+    private final MainRepository umsatzRepository;
 
-    public UmsatzService(UmsatzRepository umsatzRepository) {
+    public MainService(MainRepository umsatzRepository) {
         this.umsatzRepository = umsatzRepository;
     }
 

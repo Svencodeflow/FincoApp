@@ -28,8 +28,8 @@ public class Umsatz {
     private String art;
     @NotNull
     private String kundenreferenz;
-    @Nullable
-    private Double ausgabelimit;
+    //@Nullable
+    //private Double ausgabelimit;
 
     public Umsatz() {
 
@@ -79,16 +79,16 @@ public class Umsatz {
         return kdnr;
     }
 
-    public void setKdnr(String kdnr) {
-        this.kdnr = kdnr;
+    public void setkdnr(String kdnr) {
+        this.kdnr=kdnr;
     }
 
-    public String getUseriban() {
+    public String getIBAN() {
         return useriban;
     }
 
-    public void setUseriban(String useriban) {
-        this.useriban = useriban;
+    public void setIBAN(String userIBAN) {
+        this.useriban =userIBAN;
     }
 
     public String getArt() {
@@ -107,12 +107,12 @@ public class Umsatz {
         this.kundenreferenz = kundenreferenz;
     }
 
-    @Nullable
+    /*@Nullable
     public Double getAusgabelimit() {
         return ausgabelimit;
     }
 
     public void setAusgabelimit(@Nullable Double ausgabelimit) {
         this.ausgabelimit = ausgabelimit;
-    }
+    }*/
 }
