@@ -96,5 +96,10 @@ public class MainController {
         return umsatzService.save(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
     }
 
-
+    @GetMapping({"/temp_kat"})
+    @ResponseBody
+    public String home(Model model) {
+        model.addAttribute("username", "JohnDoe");
+        return "home";
+    }
 }
