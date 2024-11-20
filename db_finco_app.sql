@@ -14,7 +14,7 @@ USE `finco`;
    `Oauth2` VARCHAR(32) ,
    `Vorname` VARCHAR(30) NOT NULL ,
    `Nachname` VARCHAR(30) NOT NULL ,
-   `E_Mail` VARCHAR(50) NOT NULL ,
+   `EMail` VARCHAR(50) NOT NULL ,
    `PasswortHash` VARCHAR(64) NOT NULL ,
    `RegDatum` DATE NOT NULL ,
    `Ausgabelimit` DECIMAL(10,2));
@@ -33,11 +33,11 @@ USE `finco`;
     FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`));
 
    CREATE TABLE `login`
-   (`Login_ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   (`LoginID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `KdNr` VARCHAR(50) NOT NULL ,
     `UserIBAN` VARCHAR(22) NOT NULL ,
     `LoginZeit` DATETIME NOT NULL ,
-    `IP_Adresse` VARCHAR(50) NOT NULL ,
+    `IPAdresse` VARCHAR(50) NOT NULL ,
     `Status` VARCHAR(1) NOT NULL ,
      FOREIGN KEY (`KdNr`) REFERENCES `users` (`KdNr`));
 
@@ -58,7 +58,7 @@ USE `finco`;
     (6, 'Freizeit', 'Ausgabe', 'Ausgaben für Freizeitaktivitäten'),
     (7, 'Zinsen', 'Einnahme', 'Zinsen aus Ersparnissen');
 
-    INSERT INTO `users` (`KdNr`, `UserIBAN`, `OAuth1`, `OAuth2`, `Vorname`, `Nachname`, `E_Mail`, `PasswortHash`, `RegDatum`, `Ausgabelimit`)
+    INSERT INTO `users` (`KdNr`, `UserIBAN`, `OAuth1`, `OAuth2`, `Vorname`, `Nachname`, `EMail`, `PasswortHash`, `RegDatum`, `Ausgabelimit`)
     VALUES
     ('0123456789ABCDEF', 'DE02701500000000594937', NULL, NULL, 'Jane', 'Doe', 'jane.doe@gmail.com',
      'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2024-11-12', NULL),
@@ -85,7 +85,7 @@ USE `finco`;
      (5, '-50.00', '2024-11-13', '6', 'Freizeitaktivitäten im November 2024', '3C4D5E6F7G8H9I0J',
       'DE02700100800030876811', 'A', '123456789012345678901234567890');
 
-     INSERT INTO `login` (`Login_ID`, `KdNr`, `UserIBAN`, `LoginZeit`, `IP_Adresse`, `Status`) VALUES
+     INSERT INTO `login` (`LoginID`, `KdNr`, `UserIBAN`, `LoginZeit`, `IPAdresse`, `Status`) VALUES
      (1, '0123456789ABCDEF', 'DE02701500000000594937', '2024-11-12 23:01:45.000000', '192.168.64.1', 'Y'),
      (2, '1EDCBA9876543210', 'DE02700100800030876808', '2024-11-12 23:01:45.000000', '192.168.127.254', 'N'),
      (3, '2A3B4C5D6E7F8G9H', 'DE02700100800030876809', '2024-11-13 09:00:00.000000', '192.168.1.1', 'Y'),
