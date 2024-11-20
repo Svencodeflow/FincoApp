@@ -27,7 +27,7 @@
             background-position: 0 0;
         }
     </style>
-    <div class="flex flex-col min-h-screen" style="background-image: url('/images/backFoto.jpeg'); background-size: cover; background-position: center;">
+    <div class="flex flex-col min-h-screen" style="background-image: url('/images/wp2446261.jpg'); background-size: cover; background-position: center;">
         <nav>
         <div class="w-full flex items-center justify-between px-4" style="background: rgba( 0, 252, 255, 0.2 );
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -172,28 +172,30 @@
                     </div>
                 </div>
             </div>
-            <div id="home_card" class="flex justify-center w-4/5 h-96" style="background: rgba( 255, 255, 255, 0.2 );box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );backdrop-filter: blur( 5px );-webkit-backdrop-filter: blur( 5px );border-radius: 10px;border: 1px solid rgba( 255, 255, 255, 0.18 );">
-                <div class="flex flex-col items-center justify-center h-full w-full text-center">
-                    <div>
-                        <h1>Hier könnte ihre Werbung stehen!</h1>
-                    </div>
+            <div id="home_card" class="flex justify-center w-2/4 h-96" style="background: rgba( 255, 255, 255, 0.2 );box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );backdrop-filter: blur( 5px );-webkit-backdrop-filter: blur( 5px );border-radius: 10px;border: 1px solid rgba( 255, 255, 255, 0.18 );">
+                <div class="flex items-center justify-center h-full w-full text-center">
+                        <div class="flex flex-col items-center justify-center h-full w-full text-center">
+                            <img src="/images/Group.png" alt="logo" style="width: 140px; margin: 0 auto;" />
+                            <p class="font-semibold">Track your spend and income</p>
+                        </div>
+                    <div><p>Hier Könnte ihre Werbung Stehen!</p></div>
+                        <div class="flex flex-col items-center justify-center h-full w-full text-center">
+                            <img src="/images/illustration.png" alt="logo" style="width: 140px; margin: 0 auto;" />
+                            <p class="font-semibold" style="text-shadow:2px 2px black">Analyze your spending</p>
+                        </div>
                 </div>
             </div>
         </main>
         <footer class="w-full">
-            <div class="w-full h-80 flex items-center px-4" style="background: rgba( 0, 252, 255, 0.2 );
+            <div class="w-full h-14 flex items-center px-4" style="background: rgba( 0, 252, 255, 0.2 );
                     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
                     backdrop-filter: blur( 9px );
                     -webkit-backdrop-filter: blur( 9px );
                     border-radius: 0px 0px 10px 10px;
                     border: 1px solid rgba( 255, 255, 255, 0.18 );">
-                <div class="flex flex-col items-center justify-center h-full w-full text-center">
-                    <img src="/images/Group.png" alt="logo" style="width: 140px; margin: 0 auto;" />
-                    <p class="font-semibold">Track your spend and income</p>
-                </div>
-                <div class="flex flex-col items-center justify-center h-full w-full text-center">
-                    <img src="/images/illustration.png" alt="logo" style="width: 140px; margin: 0 auto;" />
-                    <p class="font-semibold">Analyze your spending</p>
+                <div class="flex" >
+                    <p style="margin-right: 1em" >Impressum</p>
+                    <p>Datenschutz</p>
                 </div>
                 <div class="absolute bottom-0 right-0 p-4">
                     <p>© 2024 Finco. All rights reserved</p>
