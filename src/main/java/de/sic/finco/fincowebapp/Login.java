@@ -63,7 +63,7 @@ public class Login{
         return ipadresse;
     }
 
-    public void setIpadresse(String ip_adresse) {
+    public void setIpadresse(String ipadresse) {
         this.ipadresse = ipadresse;
     }
 
