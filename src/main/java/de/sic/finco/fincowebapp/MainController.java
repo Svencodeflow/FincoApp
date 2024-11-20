@@ -269,14 +269,16 @@ public class MainController {
     @GetMapping("/report")
     public String report(Model model) {
 
-        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.get();
+        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
         if (sortedUmsaetze == null) {
             sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
-            }
+        }
 
         //Berechnung für Finanzübersicht (Total)
-        double balance = 0.0; for (Umsatz umsatz : sortedUmsaetze) { // Berechnung der Umsätze
-            double betrag = umsatz.getBetrag(); balance += betrag;
+        double balance = 0.0;
+        for (Umsatz umsatz : sortedUmsaetze) { // Berechnung der Umsätze
+            double betrag = umsatz.getBetrag();
+            balance += betrag;
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // Format definieren
@@ -289,7 +291,7 @@ public class MainController {
     }
     @GetMapping("/diagram")
     public String diagram(Model model) {
-        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.get();
+        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
         if (sortedUmsaetze == null) {
             sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
         }
