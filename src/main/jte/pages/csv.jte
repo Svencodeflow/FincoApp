@@ -24,7 +24,7 @@ content = @`
                         <form action="/csv" method="get">
                             ${csrfHiddenInput}
                             <button type="submit"
-                                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                                    class="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700">
                                 CSV importieren
                             </button>
                         </form>
