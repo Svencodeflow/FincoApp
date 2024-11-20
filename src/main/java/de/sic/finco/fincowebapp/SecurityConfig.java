@@ -22,10 +22,10 @@ import java.util.List;
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/login", "/Landingpage", "/register", "/umsatz", "/umsatz", "/csv", "/error", "/static/**", "/images/**", "/messages/**").permitAll()
+                        .requestMatchers("/", "/login", "/Landingpage", "/register", "/umsatz", "/csv","/error", "/static/**", "/images/**", "/messages/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -41,11 +41,11 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll()
                 );
-
         return http.build();
     }
 
-    @Bean public CorsConfigurationSource corsConfigurationSource() {
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:8080"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -56,20 +56,18 @@ public class SecurityConfig {
         return source;
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails defaultUser = User.builder()
                 .username("kunde")
-                .password(passwordEncoder().encode("kunde123"))
+                .password(passwordEncoder.encode("kunde123"))
                 .roles("Kunde")
                 .build();
-
         return new InMemoryUserDetailsManager(defaultUser);
     }
 }

@@ -21,6 +21,20 @@ content = @`
                         @if(email != null)
                             <span class="text-gray-500 text-sm">${email}</span>
                         @endif
+                        <form action="./csv.jte" method="get">
+                            ${csrfHiddenInput}
+                            <button type="submit"
+                                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                                CSV importieren
+                            </button>
+                        </form>
+                        <form action="/transactions" method="post">
+                            ${csrfHiddenInput}
+                            <button type="submit"
+                                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                                Buchungen eintragen
+                            </button>
+                        </form>
                         <form action="/logout" method="post">
                             ${csrfHiddenInput}
                             <button type="submit"

@@ -17,7 +17,7 @@ import java.util.*;
 
 @Controller
 public class MainController {
-
+    private final MainService umsatzService;
     public MainController(MainService umsatzService) {
         this.umsatzService = umsatzService;
     }
@@ -63,18 +63,40 @@ public class MainController {
         return "pages/login";
     }
 
+    private static final String ERROR_MESSAGE = "Invalid username or password";
+
     @GetMapping("/transactions")
-    public String transactions() {
-        return "transactions";
+    public String showTransactions(HttpServletRequest request, Model model, String error, String logout) {
+        handleLoginError(model, error);
+        return "pages/transactions";
+    }
+
+    private void handleLoginError(Model model, String error) {
+        if (error != null) {
+            model.addAttribute("error", true);
+            model.addAttribute("errorMessage", ERROR_MESSAGE);
+        }
     }
 
     @GetMapping("/csv")
-    public String csv() {
-        return "csv";
+    public String csv(HttpServletRequest request, Model model, String error, String logout) {
+        handleLoginError(model, error);
+        return "pages/csv";
     }
 
-    private final MainService umsatzService;
 
+
+    public Umsatz save(Double betrag, String kategorieID, byte[] data) {
+        Umsatz umsatz = new Umsatz();
+        umsatz.setBetrag(betrag);
+        umsatz.setUmsatzid(Integer.parseInt(UUID.randomUUID().toString())); // Möglicher Fehler hier
+        MainController umsatzRepository = null;
+        umsatzRepository.save(umsatz);
+        return umsatz;
+    }
+
+    private void save(Umsatz umsatz) {
+    }
 
     @GetMapping({"/umsatz"})
     @ResponseBody
