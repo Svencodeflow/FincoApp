@@ -66,6 +66,12 @@ public class MainController {
     private static final String ERROR_MESSAGE = "Invalid username or password";
 
     @GetMapping("/transactions")
+    public String getTransactions(HttpServletRequest request, Model model, String error, String logout) {
+        handleLoginError(model, error);
+        return "pages/transactions";
+    }
+
+    @PostMapping("/transactions")
     public String showTransactions(HttpServletRequest request, Model model, String error, String logout) {
         handleLoginError(model, error);
         return "pages/transactions";
