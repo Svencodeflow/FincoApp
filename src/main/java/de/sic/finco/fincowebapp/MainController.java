@@ -3,10 +3,6 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import net.minidev.json.JSONArray;
-import net.minidev.json.parser.ParseException;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -18,12 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
@@ -145,8 +138,6 @@ public class MainController {
     public Users createUsers(@RequestPart("users") @Valid MultipartFile file) throws IOException {
         return usersService.saveUsers(String.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
     }
-
-    private final MainService umsatzService;
 
     @GetMapping("/transactions")
     public String getTransactions(HttpServletRequest request, Model model, String error, String logout) {
@@ -325,7 +316,4 @@ public class MainController {
         return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
     }
 
-        model.addAttribute("cryptoData", response);
-        return "pages/Landing";
-    }
 }
