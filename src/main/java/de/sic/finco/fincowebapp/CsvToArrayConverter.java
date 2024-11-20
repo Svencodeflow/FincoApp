@@ -1,9 +1,15 @@
 package de.sic.finco.fincowebapp;
 
+import org.springframework.stereotype.Service;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class CsvToArrayConverter {
 
     private String csvString;
