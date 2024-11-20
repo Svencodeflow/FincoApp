@@ -104,6 +104,7 @@ public class MainController {
 
     @GetMapping("/report")
     public String report(Model model) {
+
         List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.get();
         if (sortedUmsaetze == null) {
             sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
@@ -113,6 +114,7 @@ public class MainController {
         double balance = 0.0; for (Umsatz umsatz : sortedUmsaetze) { // Berechnung der Umsätze
             double betrag = umsatz.getBetrag(); balance += betrag;
         }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // Format definieren
         String currentDate = LocalDate.now().format(formatter); // Aktuelles Datum formatieren
 
@@ -136,13 +138,8 @@ public class MainController {
             diagramAmounts.add(diagramTotal);
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String currentDate = LocalDate.now().format(formatter);
-
         model.addAttribute("sortedUmsaetze", sortedUmsaetze);
         model.addAttribute("diagramAmounts", diagramAmounts);
-        model.addAttribute("diagramTotal",diagramTotal);
-        model.addAttribute("currentDate", currentDate);
 
         return "pages/diagram";
     }
