@@ -176,12 +176,12 @@
                 <div class="flex items-center justify-center h-full w-full text-center">
                         <div class="flex flex-col items-center justify-center h-full w-full text-center">
                             <img src="/images/Group.png" alt="logo" style="width: 140px; margin: 0 auto;" />
-                            <p class="font-semibold">Track your spend and income</p>
+                            <p class="font-semibold" style="text-shadow: 0 0 3px #000000, 0 0 5px #00FCFFFF;" >Track your spend and income</p>
                         </div>
-                    <div><p>Hier Könnte ihre Werbung Stehen!</p></div>
+                    <div><h1 style="font-size: larger; text-shadow: 0 0 3px #000000, 0 0 5px #00FCFFFF;">Mit <span style="color:#00FCFFFF;">Finco</span> ganz einfach ihrer Finanzen im Blick halten</h1></div>
                         <div class="flex flex-col items-center justify-center h-full w-full text-center">
                             <img src="/images/illustration.png" alt="logo" style="width: 140px; margin: 0 auto;" />
-                            <p class="font-semibold" style="text-shadow:2px 2px black">Analyze your spending</p>
+                            <p class="font-semibold" style="text-shadow: 0 0 3px #000000, 0 0 5px #00FCFFFF;">Analyze your spending</p>
                         </div>
                 </div>
             </div>
@@ -194,8 +194,8 @@
                     border-radius: 0px 0px 10px 10px;
                     border: 1px solid rgba( 255, 255, 255, 0.18 );">
                 <div class="flex" >
-                    <p style="margin-right: 1em" >Impressum</p>
-                    <p>Datenschutz</p>
+                    <p style="margin-right: 1em" >Impressum</p> <!--! impressum seite mache-->
+                    <p>Datenschutz</p> <!--! Datenschutz seite machen-->
                 </div>
                 <div class="absolute bottom-0 right-0 p-4">
                     <p>© 2024 Finco. All rights reserved</p>
