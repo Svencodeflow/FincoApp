@@ -21,7 +21,7 @@ content = @`
                         @if(email != null)
                             <span class="text-gray-500 text-sm">${email}</span>
                         @endif
-                        <form action="./csv.jte" method="get">
+                        <form action="./csv" method="get">
                             ${csrfHiddenInput}
                             <button type="submit"
                                     class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
