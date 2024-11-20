@@ -23,7 +23,7 @@ public class Users{
     @NotNull
     private String nachname;
     @NotNull
-    private String e_mail;
+    private String email;
     @NotNull
     private String passworthash;
     @NotNull
@@ -84,11 +84,11 @@ public class Users{
     }
 
     public String getEmail() {
-        return e_mail;
+        return email;
     }
 
-    public void setEmail(String e_mail) {
-        this.e_mail = e_mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassworthash() {
