@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Table("login")
 public class Login{
-
     @Id
     @NotNull
     private int loginid;
