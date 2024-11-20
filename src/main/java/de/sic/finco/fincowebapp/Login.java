@@ -11,7 +11,7 @@ public class Login{
 
     @Id
     @NotNull
-    private int loginid;
+    private int login_id;
     @NotNull
     private String kdnr;
     @NotNull
@@ -19,7 +19,7 @@ public class Login{
     @NotNull
     private LocalDateTime loginzeit;
     @NotNull
-    private String ipadresse;
+    private String ip_adresse;
     @NotNull
     private String status;
 
@@ -28,11 +28,11 @@ public class Login{
     }
 
     public int getLoginid() {
-        return loginid;
+        return login_id;
     }
 
-    public void setLoginid(int loginid) {
-        this.loginid = loginid;
+    public void setLoginid(int login_id) {
+        this.login_id = login_id;
     }
 
     public String getKdnr() {
@@ -60,11 +60,11 @@ public class Login{
     }
 
     public String getIpadresse() {
-        return ipadresse;
+        return ip_adresse;
     }
 
-    public void setIpadresse(String ipadresse) {
-        this.ipadresse = ipadresse;
+    public void setIpadresse(String ip_adresse) {
+        this.ip_adresse = ip_adresse;
     }
 
     public String getStatus() {
