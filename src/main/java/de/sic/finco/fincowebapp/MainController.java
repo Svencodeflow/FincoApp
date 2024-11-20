@@ -3,6 +3,7 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,10 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -260,9 +265,53 @@ public class MainController {
         limitsService.removeLimit(id);
     }
 
+
+    @GetMapping("/report")
+    public String report(Model model) {
+
+        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.get();
+        if (sortedUmsaetze == null) {
+            sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
+            }
+
+        //Berechnung für Finanzübersicht (Total)
+        double balance = 0.0; for (Umsatz umsatz : sortedUmsaetze) { // Berechnung der Umsätze
+            double betrag = umsatz.getBetrag(); balance += betrag;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // Format definieren
+        String currentDate = LocalDate.now().format(formatter); // Aktuelles Datum formatieren
+
+        model.addAttribute("sortedUmsaetze", sortedUmsaetze);
+        model.addAttribute("balance", balance);
+        model.addAttribute("currentDate", currentDate);
+        return "pages/report";
+    }
+    @GetMapping("/diagram")
+    public String diagram(Model model) {
+        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.get();
+        if (sortedUmsaetze == null) {
+            sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
+        }
+
+        // Berechnung der Transaktionen für die Diagramm Ausgabe (Schrittweise aufbauend)
+        List<Double> diagramAmounts = new ArrayList<>();
+        double diagramTotal = 0.0;
+        for (Umsatz umsatz : sortedUmsaetze) {
+            diagramTotal += umsatz.getBetrag();
+            diagramAmounts.add(diagramTotal);
+        }
+
+        model.addAttribute("sortedUmsaetze", sortedUmsaetze);
+        model.addAttribute("diagramAmounts", diagramAmounts);
+
+        return "pages/diagram";
+    }
+
     @PostMapping ({"/limits"})
     @ResponseBody
     public Limits createLimits(@RequestPart("limits") @Valid MultipartFile file) throws IOException {
         return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
     }
+
 }
