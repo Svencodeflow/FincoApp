@@ -3,6 +3,9 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import net.minidev.json.JSONArray;
+import net.minidev.json.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class MainController {
@@ -33,6 +37,8 @@ public class MainController {
         this.loginService = loginService;
         this.limitsService = limitsService;
     }
+
+    private final MainService umsatzService;
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
@@ -74,6 +80,7 @@ public class MainController {
 
         return "pages/login";
     }
+
 
     private static final String ERROR_MESSAGE = "Invalid username or password";
 
@@ -198,6 +205,7 @@ public class MainController {
         }
     }
 
+
     @DeleteMapping ({"/umsatz/{umsatzID}"})
     public void deleteUmsatz(@PathVariable Integer id) {
         umsatzService.removeUmsatz(id);
@@ -310,10 +318,14 @@ public class MainController {
         return "pages/diagram";
     }
 
+
     @PostMapping ({"/limits"})
     @ResponseBody
     public Limits createLimits(@RequestPart("limits") @Valid MultipartFile file) throws IOException {
         return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
     }
 
+        model.addAttribute("cryptoData", response);
+        return "pages/Landing";
+    }
 }
