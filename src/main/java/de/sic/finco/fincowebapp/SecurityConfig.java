@@ -41,6 +41,14 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll()
                 );
+                /*.authorizeRequests((authorize)->authorize
+                    .antMatchers("/wallet", "/add-card").authenticated()
+                    .anyRequest().permitAll()
+                    .and()
+                    .csrf().disable() // CSRF-Schutz deaktivieren (für Entwicklungszwecke; in der Produktion aktivieren)
+                    .formLogin() .loginPage("/login") .permitAll() .and() .logout() .permitAll()*/
+
+
 
         return http.build();
     }
