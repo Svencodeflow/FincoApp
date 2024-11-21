@@ -103,13 +103,15 @@ public class MainController {
     @GetMapping("/umsatzeintrag")
     public String umsatzeintrag(Authentication authentication, HttpServletRequest request, Model model) {
 
-        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
-            model.addAttribute("username", userDetails.getUsername());
-            model.addAttribute("authorities", userDetails.getAuthorities());
-        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
-            model.addAttribute("username", oauth2User.getAttribute("name"));
-            model.addAttribute("email", oauth2User.getAttribute("email"));
-            model.addAttribute("authorities", oauth2User.getAuthorities());
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+                model.addAttribute("username", userDetails.getUsername());
+                model.addAttribute("authorities", userDetails.getAuthorities());
+            } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+                model.addAttribute("username", oauth2User.getAttribute("name"));
+                model.addAttribute("email", oauth2User.getAttribute("email"));
+                model.addAttribute("authorities", oauth2User.getAuthorities());
+            }
         }
 
         return "pages/umsatzeintrag";
