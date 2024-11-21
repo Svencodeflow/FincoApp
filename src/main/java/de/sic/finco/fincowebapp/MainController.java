@@ -3,6 +3,7 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -97,9 +98,20 @@ public class MainController {
     }
 
     @GetMapping({"/temp_kat"})
-    @ResponseBody
-    public String home(Model model) {
+    public String mode(Model model) {
         model.addAttribute("username", "JohnDoe");
-        return "home";
+        return "pages/temp_kat";
+    }
+    private List<BankCard> bankCards = new ArrayList<>();
+    @GetMapping("/wallet")
+    public String showWallet(Model model) {
+        model.addAttribute("bankCards", bankCards);
+        return "pages/wallet";
+    }
+    @PostMapping("/add-card")
+    public String addCard(@RequestParam String cardNumber, @RequestParam String expiryDate, @RequestParam String cardHolderName) {
+        BankCard bankCard = new BankCard(cardNumber, expiryDate, cardHolderName);
+        bankCards.add(bankCard);
+        return "redirect:pages/wallet";
     }
 }
