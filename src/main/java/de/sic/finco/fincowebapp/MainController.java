@@ -1,8 +1,11 @@
 package de.sic.finco.fincowebapp;
 
 
+import gg.jte.TemplateEngine;
+import gg.jte.output.Utf8ByteOutput;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -115,5 +118,32 @@ public class MainController {
         }
 
         return "pages/umsatzeintrag";
+    }
+
+    @RestController
+    @RequestMapping("/api/umsatz")
+    public class UmsatzController {
+
+        @Autowired
+        private UmsatzService umsatzService;
+
+        @PostMapping
+        public Umsatz createUmsatz(@RequestBody Umsatz umsatz) {
+            return umsatzService.saveUmsatz(umsatz);
+        }
+    }
+
+    @Controller
+    public class UmsatzFormController {
+
+        @Autowired
+        private TemplateEngine templateEngine;
+
+        @GetMapping("/umsatzeintrag")
+        public String showUmsatzEintragForm() {
+            Utf8ByteOutput output = new Utf8ByteOutput();
+            templateEngine.render("umsatzeintrag.jte", null, output);
+            return output.toString();
+        }
     }
 }
