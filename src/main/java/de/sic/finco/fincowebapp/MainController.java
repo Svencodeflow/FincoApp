@@ -102,16 +102,32 @@ public class MainController {
         model.addAttribute("username", "JohnDoe");
         return "pages/temp_kat";
     }
+
     private List<BankCard> bankCards = new ArrayList<>();
     @GetMapping("/wallet")
     public String showWallet(Model model) {
         model.addAttribute("bankCards", bankCards);
         return "pages/wallet";
     }
+
     @PostMapping("/add-card")
     public String addCard(@RequestParam String cardNumber, @RequestParam String expiryDate, @RequestParam String cardHolderName) {
         BankCard bankCard = new BankCard(cardNumber, expiryDate, cardHolderName);
         bankCards.add(bankCard);
         return "redirect:pages/wallet";
     }
+
+    private Settings settings = new Settings();
+    @GetMapping("/settings")
+    public String getSettings(Model model) {
+        model.addAttribute("settings", settings);
+        return "settings";
+    }
+
+    @PostMapping("/settings")
+    public String updateSettings(@ModelAttribute Settings newSettings) {
+        this.settings = newSettings;
+        return "redirect:pages/settings";
+    }
+
 }
