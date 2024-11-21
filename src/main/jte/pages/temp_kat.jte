@@ -20,25 +20,6 @@
         </nav>
     </div>
 
-
-  <!--  <main class="container mx-auto p-4">
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">Deine Transaktionen</h2>
-            <form action="/add" method="post" class="space-y-4">
-                <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700">Beschreibung:</label>
-                    <input type="text" id="description" name="description" required class="mt-1 p-2 block w-full border rounded-md"/>
-                </div>
-                <div>
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Betrag:</label>
-                    <input type="number" step="0.01" id="amount" name="amount" required class="mt-1 p-2 block w-full border rounded-md"/>
-                </div>
-                <div>
-                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Hinzufügen</button>
-                </div>
-            </form>
-        </section>
-    </main> -->
     <footer class="bg-gray-100 py-4">
         <nav class="container mx-auto">
             <ul class="flex space-x-4 justify-center">
