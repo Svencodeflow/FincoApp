@@ -20,8 +20,8 @@
     <main class="container mx-auto p-4">
         <section class="mb-8">
             <h2 class="text-xl font-semibold mb-4">Bankkarte hinzufügen</h2>
-            <form id="cardForm" action="/add-card" method="post" class="space-y-4">
-                <!--<input type="hidden" name="${}" value="${}">--> <!-- Kommentiere den CSRF-Token ein, falls nötig -->
+            <form id="cardForm" action="/add-card" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}"></form>
                 <div>
                     <label for="cardNumber" class="block text-sm font-medium text-gray-700">Kartennummer:</label>
                     <input type="text" id="cardNumber" name="cardNumber" required class="mt-1 p-2 block w-full border rounded-md"/>
@@ -37,9 +37,8 @@
                 <div>
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Hinzufügen</button>
                 </div>
-            </form>
         </section>
-        <section class="mb-8">
+        <section id="cardForm" class="mb-8">
             <h2 class="text-xl font-semibold mb-4">Deine Bankkarten</h2>
             <ul id="cardList">
                 <!-- Hier werden die hinzugefügten Karten angezeigt -->
@@ -62,29 +61,38 @@
         </nav>
     </footer>
     <script>
-        document.getElementById('cardForm').addEventListener('submit', function(event) {
+        document.getElementById('cardForm').addEventListener('submit', (event) => {
             event.preventDefault();
-            const cardNumber = document.getElementById('cardNumber').value;
-            const expiryDate = document.getElementById('expiryDate').value;
-            const cardHolderName = document.getElementById('cardHolderName').value;
 
-            const newCard = {
-                cardNumber: cardNumber,
-                expiryDate: expiryDate,
-                cardHolderName: cardHolderName
-            };
-
-            const cardList = document.getElementById('cardList');
-            const newCardElement = document.createElement('li');
-            newCardElement.className = 'border p-4 mb-4 rounded';
-            newCardElement.innerHTML = `
-        <p><strong>Kartennummer:</strong> ${newCard.cardNumber}</p>
-        <p><strong>Ablaufdatum:</strong> ${newCard.expiryDate}</p>
-        <p><strong>Karteninhabername:</strong> ${newCard.cardHolderName}</p>
-        `;
-        cardList.appendChild(newCardElement);
-
-        document.getElementById('cardForm').reset();
+            // Sende das Formular per AJAX oder Fetch API an den Server
+            fetch('/add-card', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cardNumber: cardNumber,
+                    expiryDate: expiryDate,
+                    cardHolderName: 1
+        1. github.com
+        github.com
+         cardHolderName
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the server response
+                if (data.success) {
+                    // Füge die neue Karte zur Liste hinzu
+                    // ... (Code zum Hinzufügen der Karte) ...
+                } else {
+                    // Zeige eine Fehlermeldung an
+                    console.error('Fehler beim Hinzufügen der Karte:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fehler beim Senden der Anfrage:', error);
+            });
         });
     </script>
 `)
