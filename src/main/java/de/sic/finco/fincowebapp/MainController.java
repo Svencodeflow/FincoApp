@@ -297,6 +297,7 @@ public class MainController {
 
         // Berechnung der Transaktionen für die Diagramm Ausgabe (Schrittweise aufbauend)
         List<Double> diagramAmounts = new ArrayList<>();
+
         double diagramTotal = 0.0;
         for (Umsatz umsatz : sortedUmsaetze) {
             diagramTotal += umsatz.getBetrag();

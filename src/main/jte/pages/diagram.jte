@@ -54,24 +54,41 @@
                             data: {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Transaktionen',
+                                    label: '',
                                     data: data,
-                                    borderColor: 'rgba(226, 136, 139, 0.88)',
-                                    borderWidth: 1,
-                                    fill: false
+                                    borderColor: 'rgba(45, 188, 179, 0.71)',
+                                    backgroundColor: 'rgba(18, 142, 142, 0.2)',
+                                    borderWidth: 6,
+                                    fill: true,
+                                    cubicInterpolationMode: 'monotone',           //abrundung der übergänge von punkt zu punkt
+                                    pointRadius: false
+
                                 }]
                             },
                             options: {
-                                responsive: true,
+                                    responsive: true,
                                 scales: {
                                     x: {
-                                        beginAtZero: true
-                                    },
+                                        grid:{
+                                            beginAtZero: true
+                                            }
+                                        },
                                     y: {
-                                        beginAtZero: true
-                                    }
+                                        grid:{
+                                            color: 'rgba(58, 201, 197, 1)',
+                                            borderColor: 'grey',
+                                            tickColor: 'grey',
+                                            beginAtZero: true
+                                            }
+                                        }
+                                    },
+                                        plugins: {
+                                            legend: {
+                                                display: false                         // Legende deaktivieren
+                                            }
+                                        }
                                 }
-                            }
+
                         };
 
                         // Diagramm rendern
