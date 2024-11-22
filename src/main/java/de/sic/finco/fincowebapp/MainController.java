@@ -93,7 +93,7 @@ public class MainController {
     }
 
     @DeleteMapping ({"/kategorie/{kategorieID}"})
-    public void deleteKategorie(@PathVariable Integer id) {
+    @ResponseBody public void deleteKategorie(@PathVariable Integer id) {
         kategorieService.removeKategorie(id);
     }
 
@@ -124,7 +124,7 @@ public class MainController {
     }
 
     @DeleteMapping ({"/users/{kdnr}"})
-    public void deleteUsers(@PathVariable String kdnr) {
+    @ResponseBody public void deleteUsers(@PathVariable String kdnr) {
         usersService.removeUser(kdnr);
     }
 
@@ -194,7 +194,7 @@ public class MainController {
     }
 
     @DeleteMapping ({"/umsatz/{umsatzID}"})
-    public void deleteUmsatz(@PathVariable Integer id) {
+    @ResponseBody public void deleteUmsatz(@PathVariable Integer id) {
         umsatzService.removeUmsatz(id);
     }
 
@@ -225,7 +225,7 @@ public class MainController {
     }
 
     @DeleteMapping ({"/logintest/{loginID}"})
-    public void deleteLogintest(@PathVariable Integer id) {
+    @ResponseBody public void deleteLogintest(@PathVariable Integer id) {
         loginService.removeLogintest(id);
     }
 
@@ -256,7 +256,7 @@ public class MainController {
     }
 
     @DeleteMapping ({"/limits/{limitID}"})
-    public void deleteLimits(@PathVariable Integer id) {
+    @ResponseBody public void deleteLimits(@PathVariable Integer id) {
         limitsService.removeLimit(id);
     }
 
