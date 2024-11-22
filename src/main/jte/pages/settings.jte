@@ -5,6 +5,12 @@
 
 
 @template.layout.main(content = @`
+    <style> /* Zusätzliche benutzerdefinierte CSS-Stile */
+    input[type="text"], input[type="password"] {
+     color: black; /* Textfarbe auf Schwarz setzen */
+     border-color: gray; /* Randfarbe auf Grau setzen */
+     }
+    </style>
     <div class="container mx-auto p-4">
         <h1 class="text-3xl font-bold mb-6">Einstellungen</h1>
         <!-- Modes Section -->
@@ -13,10 +19,6 @@
             <div class="flex items-center mb-4">
                 <label for="darkMode" class="block text-sm font-medium text-gray-700 mr-2">Dunkelmodus:</label>
                 <input type="checkbox" id="darkMode" name="darkMode" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-            </div>
-            <div class="flex items-center mb-4">
-                <label for="lightMode" class="block text-sm font-medium text-gray-700 mr-2">Hellmodus:</label>
-                <input type="checkbox" id="lightMode" name="lightMode" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
             </div>
         </section>
         <!-- Profile Section -->
@@ -52,11 +54,22 @@
                 <div>
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Speichern</button>
                 </div>
+                <div>
+                    <button onclick="history.back()" class="bg-blue-500 text-white py-2 px-4 rounded">>Zurück</button>
+                </div>
             </form>
         </section>
     </div>
 
     <script>
+        function changeLanguage() {
+            const language = document.getElementById("language").value;
+            const elements = document.querySelectorAll("[data-key]");
+            elements.forEach(element => { const key = element.getAttribute("data-key");
+            element.textContent = translations[language][key];
+        });
+    }
+
         document.getElementById('darkMode').addEventListener('change', function(event) {
             if (event.target.checked) {
                 document.body.classList.add('dark-mode');

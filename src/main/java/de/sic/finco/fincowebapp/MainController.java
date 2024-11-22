@@ -3,6 +3,7 @@ package de.sic.finco.fincowebapp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -317,30 +318,43 @@ public class MainController {
         return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
     }
 
-    @GetMapping({"/temp_kat"})
+    @GetMapping({"/temp_kat"}) //! Homeseite um über Buttons zu interagieren
     public String mode(Model model) {
         model.addAttribute("username", "JohnDoe");
         return "pages/temp_kat";
     }
 
     private List<BankCard> bankCards = new ArrayList<>();
-    @GetMapping("/wallet")
+    @GetMapping("/wallet") //! Seite zum Karten hinzufügen...leider funktioniert sie noch nicht.
     public String showWallet(Model model) {
         model.addAttribute("bankCards", bankCards);
         return "pages/wallet";
     }
 
-    @PostMapping("/add-card")
+    @PostMapping("/add-card") //! gehört zum Wallet
     public String addCard(@RequestParam String cardNumber, @RequestParam String expiryDate, @RequestParam String cardHolderName) {
         BankCard bankCard = new BankCard(cardNumber, expiryDate, cardHolderName);
         bankCards.add(bankCard);
         return "redirect:pages/wallet";
     }
 
+/*    @Autowired
+    private BankCardService bankCardService;
+
+    @PostMapping("/add-card")
+    public String addBankCard(@RequestBody BankCard bankCard) {
+        bankCardService.saveBankCard(bankCard);
+        return "{\"success\": true}";
+    }
+
+    @GetMapping("/bank-cards")
+    public List<BankCard> getBankCards() {
+        return bankCardService.getAllBankCards();
+    }*/
 
     private Settings settings;
 
-    @GetMapping("/settings")
+    @GetMapping("/settings") //! Einstellungen: Namen, ect pp
     public String getSettings(Model model) {
         model.addAttribute("settings", settings);
         return "pages/settings";

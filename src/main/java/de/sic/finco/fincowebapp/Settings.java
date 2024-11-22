@@ -6,8 +6,6 @@ public class Settings {
     private String email;
     private String language;
 
-        // Konstruktoren, Getter und Setter
-
     public Settings(boolean darkMode, String username, String email, String language) {
          this.darkMode = darkMode;
          this.username = username;

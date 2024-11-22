@@ -6,11 +6,10 @@
 
 @template.layout.main(content = @`
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Willkommen zurück, <span text="${username}"></span></h1>
+        <h1 class="text-2xl font-bold mb-4">Willkommen zurück, <span>${username}</span></h1>
         <nav class="mb-8">
             <ul class="space-y-4">
                 <li><a href="/wallet" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Mein Wallet</a></li>
-                <li><a href="/notifications" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Benachrichtigungen</a></li>
                 <li><a href="/settings" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Einstellungen</a></li>
                 <li><a href="/faq" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">FAQ</a></li>
                 <li><a href="/logout" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Abmelden</a></li>
@@ -18,11 +17,50 @@
         </nav>
     </div>
 
+    <main class="container mx-auto p-4">
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Benachrichtigungen</h2>
+            <div class="flex items-center mb-4">
+                <label for="notifications" class="block text-sm font-medium text-gray-700 mr-2">Aktiviere Benachrichtigungen:</label>
+                <input type="checkbox" id="notifications" name="notifications" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+            </div>
+        </section>
+    </main>
+
     <footer class="bg-gray-100 py-4">
         <nav class="container mx-auto">
             <ul class="flex space-x-4 justify-center">
-                <li><a href="/"><img src="/images/backFoto.jpeg" alt="Home" class="w-10 h-10"/></a></li>
+                <button onclick="history.back()" class="bg-blue-500 text-white py-2 px-4 rounded">>Zurück</button>
             </ul>
         </nav>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const notificationCheckbox = document.getElementById('notifications');
+
+            //! Laden des gespeicherten Zustands der Benachrichtigungen
+            const notificationsEnabled = localStorage.getItem('notificationsEnabled') === 'true';
+            notificationCheckbox.checked = notificationsEnabled;
+
+            notificationCheckbox.addEventListener('change', function(event) {
+                if (event.target.checked) {
+                    if (Notification.permission === 'granted') {
+                        new Notification('Benachrichtigungen sind aktiviert!');
+                    } else if (Notification.permission !== 'denied') {
+                        Notification.requestPermission().then(permission => {
+                            if (permission === 'granted') {
+                                new Notification('Benachrichtigungen sind aktiviert!');
+                            }
+                        });
+                    }
+                    localStorage.setItem('notificationsEnabled', 'true');
+                } else {
+                    //! Logik zum Deaktivieren von Benachrichtigungen (falls erforderlich)
+                    alert('Benachrichtigungen sind deaktiviert!');
+                    localStorage.setItem('notificationsEnabled', 'false');
+                }
+            });
+        });
+    </script>
 `)
