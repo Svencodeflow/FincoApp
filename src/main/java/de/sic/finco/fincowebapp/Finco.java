@@ -1,4 +1,4 @@
 package de.sic.finco.fincowebapp;
 
-public interface Daten {
+public interface Finco {
 }

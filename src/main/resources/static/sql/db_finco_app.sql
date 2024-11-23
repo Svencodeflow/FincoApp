@@ -97,3 +97,9 @@ USE `finco`;
      (2, '1EDCBA9876543210', '4', '500.00'),
      (3, '2A3B4C5D6E7F8G9H', '5', '5000.00'),
      (4, '2B3C4D5E6F7G8H9I', '6', '200.00');
+
+     SELECT KdNr FROM `users` WHERE Nachname = 'Doe' AND EMail LIKE 'john%appleid%';
+     SELECT * FROM `umsatz` ORDER BY KdNr;
+     SELECT * FROM `umsatz` ORDER BY Kundenreferenz;
+
+
