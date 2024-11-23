@@ -32,12 +32,8 @@ public class MainService {
         kategorieRepository.deleteById(id);
     }
 
-    public Kategorie saveKategorie(Integer kategorieID, String name, byte[] data) {
-        Kategorie kategorie = new Kategorie();
-        kategorie.setName(name);
-        kategorie.setKategorieid(Integer.parseInt(UUID.randomUUID().toString()));
-        kategorieRepository.save(kategorie);
-        return kategorie;
+    public Kategorie saveKategorie(Kategorie kategorie) {
+        return kategorieRepository.save(kategorie);
     }
 
     public Iterable<Users> getUsers() {

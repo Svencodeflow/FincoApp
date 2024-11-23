@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,10 +82,10 @@ public class MainController {
         return kategorieService.getKategorie();
     }
 
-    @GetMapping({"/kategorie/{kategorieID}"})
+    @GetMapping({"/kategorie/{id}"})
     @ResponseBody
     public Kategorie getKategorie(@PathVariable Integer id) {
-        Kategorie kategorie = (Kategorie) this.kategorieService.getKategorie();
+        Kategorie kategorie = kategorieService.getKategorieid(id);
         if(kategorie == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -92,15 +93,16 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/kategorie/{kategorieID}"})
+    @DeleteMapping ({"/kategorie/{id}"})
     @ResponseBody public void deleteKategorie(@PathVariable Integer id) {
         kategorieService.removeKategorie(id);
     }
 
-    @PostMapping ({"/kategorie"})
+    @PostMapping("/kategorie")
     @ResponseBody
-    public Kategorie createKategorie(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.saveKategorie(Integer.parseInt(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public ResponseEntity<Kategorie> createKategorie(@RequestBody @Valid Kategorie kategorie) {
+        Kategorie savedKategorie = kategorieService.saveKategorie(kategorie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedKategorie);
     }
 
     private final MainService usersService;
