@@ -57,7 +57,6 @@ content = @`
                                 <input type="submit" value="Upload">
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

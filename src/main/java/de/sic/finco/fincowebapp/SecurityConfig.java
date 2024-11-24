@@ -24,8 +24,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/kategorie/**", "/umsatz/**", "/logintest/**", "/limits/**") // Endpunkte, die CSRF-Schutz ignorieren sollen
+                )
                 .authorizeHttpRequests((authorize) -> authorize //! test
-                        .requestMatchers("/", "/login", "/dashboard", "/Landingpage", "/register", "/umsatz", "/csv/**", "/kategorie", "/users", "/umsatz", "/logintest", "limits", "/transactions/**", "/error", "/static/**", "/images/**", "/messages/**").permitAll()
+                        .requestMatchers("/", "/login", "/dashboard", "/Landingpage", "/register", "/umsatz", "/csv/**", "/kategorie/**", "/users/**", "/umsatz/**", "/logintest/**", "/limits/**", "/transactions/**", "/error", "/static/**", "/images/**", "/messages/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

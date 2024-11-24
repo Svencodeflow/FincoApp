@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +15,6 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -30,8 +29,6 @@ public class MainController {
         this.loginService = loginService;
         this.limitsService = limitsService;
     }
-
-    private final MainService umsatzService;
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
@@ -74,7 +71,6 @@ public class MainController {
         return "pages/login";
     }
 
-
     private static final String ERROR_MESSAGE = "Invalid username or password";
 
     private final MainService kategorieService;
@@ -86,10 +82,10 @@ public class MainController {
         return kategorieService.getKategorie();
     }
 
-    @GetMapping({"/kategorie/{kategorieID}"})
+    @GetMapping({"/kategorie/{id}"})
     @ResponseBody
     public Kategorie getKategorie(@PathVariable Integer id) {
-        Kategorie kategorie = (Kategorie) this.kategorieService.getKategorie();
+        Kategorie kategorie = kategorieService.getKategorieid(id);
         if(kategorie == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -97,15 +93,16 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/kategorie/{kategorieID}"})
-    public void deleteKategorie(@PathVariable Integer id) {
+    @DeleteMapping ({"/kategorie/{id}"})
+    @ResponseBody public void deleteKategorie(@PathVariable Integer id) {
         kategorieService.removeKategorie(id);
     }
 
-    @PostMapping ({"/kategorie"})
+    @PostMapping("/kategorie")
     @ResponseBody
-    public Kategorie createKategorie(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.saveKategorie(Integer.parseInt(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public ResponseEntity<Kategorie> createKategorie(@RequestBody @Valid Kategorie kategorie) {
+        Kategorie savedKategorie = kategorieService.saveKategorie(kategorie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedKategorie);
     }
 
     private final MainService usersService;
@@ -120,7 +117,7 @@ public class MainController {
     @GetMapping({"/users/{kdnr}"})
     @ResponseBody
     public Users getUsers(@PathVariable String kdnr) {
-        Users users = (Users) this.usersService.getUsers();
+        Users users = usersService.getKdnr(kdnr);
         if(users == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -129,15 +126,18 @@ public class MainController {
     }
 
     @DeleteMapping ({"/users/{kdnr}"})
-    public void deleteUsers(@PathVariable String kdnr) {
+    @ResponseBody public void deleteUsers(@PathVariable String kdnr) {
         usersService.removeUser(kdnr);
     }
 
     @PostMapping ({"/users"})
     @ResponseBody
-    public Users createUsers(@RequestPart("users") @Valid MultipartFile file) throws IOException {
-        return usersService.saveUsers(String.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public ResponseEntity<Users> createUsers(@RequestBody @Valid Users users) {
+        Users savedUsers = usersService.saveUsers(users);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsers);
     }
+
+    private final MainService umsatzService;
 
     @GetMapping("/transactions")
     public String getTransactions(HttpServletRequest request, Model model, String error, String logout) {
@@ -185,10 +185,10 @@ public class MainController {
         return umsatzService.getUmsatz();
     }
 
-    @GetMapping({"/umsatz/{umsatzID}"})
+    @GetMapping({"/umsatz/{id}"})
     @ResponseBody
     public Umsatz getUmsatz(@PathVariable Integer id) {
-        Umsatz umsatz = (Umsatz) this.umsatzService.getUmsatz();
+        Umsatz umsatz = umsatzService.getUmsatzid(id);
         if(umsatz == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -196,16 +196,16 @@ public class MainController {
         }
     }
 
-
-    @DeleteMapping ({"/umsatz/{umsatzID}"})
-    public void deleteUmsatz(@PathVariable Integer id) {
+    @DeleteMapping ({"/umsatz/{id}"})
+    @ResponseBody public void deleteUmsatz(@PathVariable Integer id) {
         umsatzService.removeUmsatz(id);
     }
 
     @PostMapping ({"/umsatz"})
     @ResponseBody
-    public Umsatz createUmsatz(@RequestPart("umsatz") @Valid MultipartFile file) throws IOException {
-        return umsatzService.saveUmsatz(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public ResponseEntity<Umsatz> createUmsatz(@RequestBody @Valid Umsatz umsatz) {
+        Umsatz savedUmsatz = umsatzService.saveUmsatz(umsatz);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUmsatz);
     }
 
     private final MainService loginService;
@@ -217,10 +217,10 @@ public class MainController {
         return loginService.getLogintest();
     }
 
-    @GetMapping({"/logintest/{loginID}"})
+    @GetMapping({"/logintest/{id}"})
     @ResponseBody
     public Login getLogintest(@PathVariable Integer id) {
-        Login login = (Login) this.loginService.getLogintest();
+        Login login = (Login) loginService.getLogintest(id);
         if(login == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -228,15 +228,16 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/logintest/{loginID}"})
-    public void deleteLogintest(@PathVariable Integer id) {
+    @DeleteMapping ({"/logintest/{id}"})
+    @ResponseBody public void deleteLogintest(@PathVariable Integer id) {
         loginService.removeLogintest(id);
     }
 
     @PostMapping ({"/logintest"})
     @ResponseBody
-    public Login createLogintest(@RequestPart("logintest") @Valid MultipartFile file) throws IOException {
-        return loginService.saveLogintest(Integer.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public ResponseEntity<Login> createLogintest(@RequestBody @Valid Login login) {
+        Login savedLogin = loginService.saveLogintest(login);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedLogin);
     }
 
     private final MainService limitsService;
@@ -248,10 +249,10 @@ public class MainController {
         return limitsService.getLimits();
     }
 
-    @GetMapping({"/limits/{limitID}"})
+    @GetMapping({"/limits/{id}"})
     @ResponseBody
     public Limits getLimits(@PathVariable Integer id) {
-        Limits limits = (Limits) this.limitsService.getLimits();
+        Limits limits = limitsService.getLimitsid(id);
         if(limits == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -259,62 +260,15 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/limits/{limitID}"})
-    public void deleteLimits(@PathVariable Integer id) {
+    @DeleteMapping ({"/limits/{id}"})
+    @ResponseBody public void deleteLimits(@PathVariable Integer id) {
         limitsService.removeLimit(id);
     }
 
-
-    @GetMapping("/report")
-    public String report(Model model) {
-
-        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
-        if (sortedUmsaetze == null) {
-            sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
-        }
-
-        //Berechnung für Finanzübersicht (Total)
-        double balance = 0.0;
-        for (Umsatz umsatz : sortedUmsaetze) { // Berechnung der Umsätze
-            double betrag = umsatz.getBetrag();
-            balance += betrag;
-        }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // Format definieren
-        String currentDate = LocalDate.now().format(formatter); // Aktuelles Datum formatieren
-
-        model.addAttribute("sortedUmsaetze", sortedUmsaetze);
-        model.addAttribute("balance", balance);
-        model.addAttribute("currentDate", currentDate);
-        return "pages/report";
-    }
-    @GetMapping("/diagram")
-    public String diagram(Model model) {
-        List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
-        if (sortedUmsaetze == null) {
-            sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
-        }
-
-        // Berechnung der Transaktionen für die Diagramm Ausgabe (Schrittweise aufbauend)
-        List<Double> diagramAmounts = new ArrayList<>();
-
-        double diagramTotal = 0.0;
-        for (Umsatz umsatz : sortedUmsaetze) {
-            diagramTotal += umsatz.getBetrag();
-            diagramAmounts.add(diagramTotal);
-        }
-
-        model.addAttribute("sortedUmsaetze", sortedUmsaetze);
-        model.addAttribute("diagramAmounts", diagramAmounts);
-
-        return "pages/diagram";
-    }
-
-
     @PostMapping ({"/limits"})
     @ResponseBody
-    public Limits createLimits(@RequestPart("limits") @Valid MultipartFile file) throws IOException {
-        return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
+    public ResponseEntity<Limits> createLimits(@RequestBody @Valid Limits limits) {
+        Limits savedLimits = limitsService.saveLimits(limits);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedLimits);
     }
-
 }
