@@ -56,9 +56,7 @@ content = @`
                                 <input type="file" id="myFile" name="file" accept=".csv">
                                 <input type="submit" value="Upload">
                             </form>
-                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
