@@ -6,13 +6,16 @@
 
 @template.layout.main(content = @`
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Willkommen zurück, <span>${username}</span></h1>
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold mb-4">Willkommen zurück, <span>${username}</span></h1>
+            <img src="/images/logo.png" alt="Logo" class="w-16 h-16">
+        </div>
         <nav class="mb-8">
             <ul class="space-y-4">
-                <li><a href="/wallet" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Mein Wallet</a></li>
-                <li><a href="/settings" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Einstellungen</a></li>
-                <li><a href="/faq" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">FAQ</a></li>
-                <li><a href="/logout" class="bg-blue-500 text-white py-2 px-4 rounded block text-center">Abmelden</a></li>
+                <li><a href="/wallet" class="bg-cyan-500 text-white py-2 px-4 rounded block text-center">Mein Wallet</a></li>
+                <li><a href="/settings" class="bg-cyan-500 text-white py-2 px-4 rounded block text-center">Einstellungen</a></li>
+                <li><a href="/faq" class="bg-cyan-500 text-white py-2 px-4 rounded block text-center">FAQ</a></li>
+                <li><a href="/logout" class="bg-cyan-500 text-white py-2 px-4 rounded block text-center">Abmelden</a></li>
             </ul>
         </nav>
     </div>
@@ -27,11 +30,12 @@
         </section>
     </main>
 
-    <footer class="bg-gray-100 py-4">
-        <nav class="container mx-auto">
-            <ul class="flex space-x-4 justify-center">
-                <button onclick="history.back()" class="bg-blue-500 text-white py-2 px-4 rounded">>Zurück</button>
-            </ul>
+    <footer class="bg-cover bg-center py-4" style="background-image: url('/images/backFoto.jpeg');">
+        <nav class="container mx-auto flex justify-center items-center">
+            <div class="text-center">
+                <a href="/temp_kat" class="bg-cyan-500 text-white py-2 px-4 rounded">Zurück zur Übersicht</a>
+                <a href="/dashboard" class="bg-cyan-500 text-white py-2 px-4 rounded ml-4">Zum Dashboard</a>
+            </div>
         </nav>
     </footer>
 

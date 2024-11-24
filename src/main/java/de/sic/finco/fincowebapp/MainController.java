@@ -365,4 +365,9 @@ public class MainController {
         this.settings = newSettings;
         return "redirect:pages/settings";
     }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "pages/faq";
+    }
 }

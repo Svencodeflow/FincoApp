@@ -11,6 +11,7 @@ public class Settings {
          this.username = username;
          this.email = email;
          this.language = language;
+
         }
 
         public boolean isDarkMode() {
