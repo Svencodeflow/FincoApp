@@ -48,12 +48,8 @@ public class MainService {
         usersRepository.deleteById(kdnr);
     }
 
-    public Users saveUsers(String kdnr, String useriban, byte[] data) {
-        Users users = new Users();
-        users.setUseriban(useriban);
-        users.setKdnr(String.valueOf(UUID.randomUUID().toString()));
-        usersRepository.save(users);
-        return users;
+    public Users saveUsers(Users users) {
+        return usersRepository.save(users);
     }
 
     public Iterable<Umsatz> getUmsatz() {
@@ -68,12 +64,8 @@ public class MainService {
         umsatzRepository.deleteById(id);
     }
 
-    public Umsatz saveUmsatz(Double betrag, String kategorieID, byte[] data) {
-        Umsatz umsatz = new Umsatz();
-        umsatz.setBetrag(betrag);
-        umsatz.setUmsatzid(Integer.parseInt(UUID.randomUUID().toString()));
-        umsatzRepository.save(umsatz);
-        return umsatz;
+    public Umsatz saveUmsatz(Umsatz umsatz) {
+        return umsatzRepository.save(umsatz);
     }
 
     public Iterable<Login> getLogintest() {
@@ -88,12 +80,8 @@ public class MainService {
         loginRepository.deleteById(id);
     }
 
-    public Login saveLogintest(Integer loginid, String ipadresse, byte[] data) {
-        Login login = new Login();
-        login.setIpadresse(String.valueOf(login));
-        login.setLoginid(Integer.parseInt(UUID.randomUUID().toString()));
-        loginRepository.save(login);
-        return login;
+    public Login saveLogintest(Login login) {
+        return loginRepository.save(login);
     }
 
     public Iterable<Limits> getLimits() {
@@ -108,11 +96,7 @@ public class MainService {
         limitsRepository.deleteById(id);
     }
 
-    public Limits saveLimits(Double ausgabelimit, Integer limitsid, byte[] data) {
-        Limits limits = new Limits();
-        limits.setAusgabelimit(ausgabelimit);
-        limits.setLimitid(Integer.parseInt(UUID.randomUUID().toString()));
-        limitsRepository.save(limits);
-        return limits;
+    public Limits saveLimits(Limits limits) {
+        return limitsRepository.save(limits);
     }
 }
