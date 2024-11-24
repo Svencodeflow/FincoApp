@@ -6,23 +6,46 @@
 @param java.util.List<Double> diagramAmounts
 
 @template.layout.main(content = @`
-    <div class="min-h-screen bg-gray-100">
-        <nav class="bg-white shadow-sm">
+
+    <style>
+        .hover-text-gradient {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(to right, rgba(0, 252, 255, 1) 50%, rgba(255, 255, 255, 0.8) 50%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            transition: background-position 0.25s ease-out;
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+
+        .hover-text-gradient:hover {
+            background-position: 0 0;
+        }
+    </style>
+    <div class="min-h-screen bg-gray-900">
+        <nav class="bg-gray-800 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex items-center">
                         <h1 class="text-xl font-semibold">Diagram</h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <span class="text-gray-700">Welcome, ${username}</span>
+                        <span class="text-white">Welcome, ${username}</span>
                         @if(email != null)
-                            <span class="text-gray-500 text-sm">${email}</span>
+                            <span class="text-white text-sm">${email}</span>
                         @endif
                         <form action="/logout" method="post">
                             ${csrfHiddenInput}
-                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                                Logout
-                            </button>
+                            <form action="/dashboard" method="post">
+                                ${csrfHiddenInput}
+                                <button type="button" onclick="showDa()" class="hover-text-gradient">Dashboard</button>
+                            </form>
                         </form>
                     </div>
                 </div>
@@ -30,20 +53,20 @@
         </nav>
         <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="px-4 py-6 sm:px-0">
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Finanzdiagramm</h2>
+                <div class="bg-gray-900 shadow rounded-lg p-6">
+                    <h2 class="text-2xl font-semibold text-white mb-4">Finanzdiagramm</h2>
                     <canvas id="transactionChart" width="400" height="200"></canvas>
                     <script>
 
                         // Daten für das Diagramm vorbereiten
                         const labels = [
-                        @for(de.sic.finco.fincowebapp.Umsatz umsatz : sortedUmsaetze)
-                                '${umsatz.getDatum().toString()}',
+                            @for(de.sic.finco.fincowebapp.Umsatz umsatz : sortedUmsaetze)
+                            '${umsatz.getDatum().toString()}',
                             @endfor
                         ];
 
                         const data = [
-                        @for (Double amount : diagramAmounts)
+                            @for (Double amount : diagramAmounts)
                             ${amount},
                             @endfor
                         ];
@@ -66,34 +89,39 @@
                                 }]
                             },
                             options: {
-                                    responsive: true,
+                                responsive: true,
                                 scales: {
                                     x: {
                                         grid:{
                                             beginAtZero: true
-                                            }
-                                        },
+                                        }
+                                    },
                                     y: {
                                         grid:{
-                                            color: 'rgba(58, 201, 197, 1)',
+                                            color: 'white',
                                             borderColor: 'grey',
                                             tickColor: 'grey',
                                             beginAtZero: true
-                                            }
                                         }
-                                    },
-                                        plugins: {
-                                            legend: {
-                                                display: false                         // Legende deaktivieren
-                                            }
-                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false                         // Legende deaktivieren
+                                    }
                                 }
+                            }
 
                         };
 
                         // Diagramm rendern
                         const render = document.getElementById('transactionChart').getContext('2d');
                         new Chart(render, config);
+
+                        function showDa() {
+                            window.location.href = "/dashboard";
+                        }
+
                     </script>
                 </div>
             </div>

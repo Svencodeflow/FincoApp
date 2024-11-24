@@ -1,7 +1,6 @@
 package de.sic.finco.fincowebapp;
 
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service

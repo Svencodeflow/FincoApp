@@ -194,8 +194,8 @@
                     border-radius: 0px 0px 10px 10px;
                     border: 1px solid rgba( 255, 255, 255, 0.18 );">
                 <div class="flex" >
-                    <p style="margin-right: 1em" >Impressum</p> <!--! impressum seite mache-->
-                    <p>Datenschutz</p> <!--! Datenschutz seite machen-->
+                    <p style="margin-right: 1em" onclick="changeSiteImpressum()">Impressum</p> <!--! impressum seite mache-->
+                    <p onclick="changeSiteDatenschutz()">Datenschutz</p> <!--! Datenschutz seite machen-->
                 </div>
                 <div class="absolute bottom-0 right-0 p-4">
                     <p>© 2024 Finco. All rights reserved</p>
@@ -235,6 +235,14 @@
             element.home.style.display = 'none';
             element.login.style.display = 'none';
         }
+    }
+
+    function changeSiteImpressum() {
+        window.location.href = "/impressum";
+    }
+
+    function changeSiteDatenschutz() {
+        window.location.href = "/datenschutz";
     }
     </script>
 `)

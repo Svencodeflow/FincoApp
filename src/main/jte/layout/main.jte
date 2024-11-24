@@ -15,16 +15,6 @@
 </head>
 <body>
 <main>
-<%--    <nav>--%>
-<%--        <div>--%>
-<%--            <img src="/images/logo.png" alt="logo" />--%>
-<%--            <h1>Finco</h1>--%>
-<%--            <div>--%>
-<%--                <button type="button"/>--%>
-<%--                <button type="button"/>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </nav>--%>
     <div id="content">
         ${content}
     </div>

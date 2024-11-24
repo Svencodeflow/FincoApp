@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/kategorie/**", "/umsatz/**", "/logintest/**", "/limits/**") // Endpunkte, die CSRF-Schutz ignorieren sollen
                 )
                 .authorizeHttpRequests((authorize) -> authorize //! test
-                        .requestMatchers("/", "/login", "/dashboard", "/Landingpage", "/register", "/umsatz", "/csv/**", "/kategorie/**", "/users/**", "/umsatz/**", "/logintest/**", "/limits/**", "/transactions/**", "/error", "/static/**", "/images/**", "/messages/**").permitAll()
+                        .requestMatchers("/", "/login", "/dashboard", "/Landingpage", "/datenschutz", "/impressum", "/register", "/umsatz", "/csv/**", "/kategorie/**", "/users/**", "/umsatz/**", "/logintest/**", "/limits/**", "/transactions/**", "/error", "/static/**", "/images/**", "/messages/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

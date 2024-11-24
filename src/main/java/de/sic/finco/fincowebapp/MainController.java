@@ -1,19 +1,19 @@
 package de.sic.finco.fincowebapp;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +21,6 @@ import java.util.*;
 
 @Controller
 public class MainController {
-
 
     public MainController(MainService kategorieService, MainService usersService, MainService umsatzService,
                           MainService loginService, MainService limitsService, MainService usersService1, MainService loginService1, MainService limitsService1) {
@@ -33,6 +32,7 @@ public class MainController {
     }
 
     private final MainService umsatzService;
+
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(value = "lang", required = false) String lang) {
@@ -75,11 +75,9 @@ public class MainController {
         return "pages/login";
     }
 
-
     private static final String ERROR_MESSAGE = "Invalid username or password";
 
     private final MainService kategorieService;
-
 
     @GetMapping({"/kategorie"})
     @ResponseBody
@@ -105,12 +103,11 @@ public class MainController {
 
     @PostMapping ({"/kategorie"})
     @ResponseBody
-    public Kategorie createKategorie(@RequestPart("kategorie") @Valid MultipartFile file) throws IOException {
-        return kategorieService.saveKategorie(Integer.parseInt(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public Kategorie createKategorie(@RequestPart("kategorie") @Valid Kategorie kategorie) throws IOException {
+        return kategorieService.saveKategorie(kategorie);
     }
 
     private final MainService usersService;
-
 
     @GetMapping({"/users"})
     @ResponseBody
@@ -136,8 +133,8 @@ public class MainController {
 
     @PostMapping ({"/users"})
     @ResponseBody
-    public Users createUsers(@RequestPart("users") @Valid MultipartFile file) throws IOException {
-        return usersService.saveUsers(String.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public Users createUsers(@RequestPart("users") @Valid Users users) throws IOException {
+        return usersService.saveUsers(users);
     }
 
     @GetMapping("/transactions")
@@ -145,7 +142,6 @@ public class MainController {
         handleLoginError(model, error);
         return "pages/transactions";
     }
-
 
     @PostMapping("/transactions")
     public String showTransactions(HttpServletRequest request, Model model, String error, String logout) {
@@ -165,8 +161,6 @@ public class MainController {
         handleLoginError(model, error);
         return "pages/csv";
     }
-
-
 
     public Umsatz save(Double betrag, String kategorieID, byte[] data) {
         Umsatz umsatz = new Umsatz();
@@ -197,7 +191,6 @@ public class MainController {
         }
     }
 
-
     @DeleteMapping ({"/umsatz/{umsatzID}"})
     public void deleteUmsatz(@PathVariable Integer id) {
         umsatzService.removeUmsatz(id);
@@ -205,12 +198,11 @@ public class MainController {
 
     @PostMapping ({"/umsatz"})
     @ResponseBody
-    public Umsatz createUmsatz(@RequestPart("umsatz") @Valid MultipartFile file) throws IOException {
-        return umsatzService.saveUmsatz(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public Umsatz createUmsatz(@RequestPart("umsatz") @Valid Umsatz umsatz) throws IOException {
+        return umsatzService.saveUmsatz(umsatz);
     }
 
     private final MainService loginService;
-
 
     @GetMapping({"/logintest"})
     @ResponseBody
@@ -236,12 +228,11 @@ public class MainController {
 
     @PostMapping ({"/logintest"})
     @ResponseBody
-    public Login createLogintest(@RequestPart("logintest") @Valid MultipartFile file) throws IOException {
-        return loginService.saveLogintest(Integer.valueOf(Objects.requireNonNull(file.getOriginalFilename())), file.getContentType(), file.getBytes());
+    public Login createLogintest(@RequestPart("logintest") @Valid Login login) throws IOException {
+        return loginService.saveLogintest(login);
     }
 
     private final MainService limitsService;
-
 
     @GetMapping({"/limits"})
     @ResponseBody
@@ -265,9 +256,55 @@ public class MainController {
         limitsService.removeLimit(id);
     }
 
+    @PostMapping ({"/limits"})
+    @ResponseBody
+    public Limits createLimits(@RequestPart("limits") @Valid Limits limits) throws IOException {
+        return limitsService.saveLimits(limits);
+    }
+
+    @GetMapping({"/temp_kat"}) //! Homeseite um über Buttons zu interagieren
+    public String mode(Model model, Authentication authentication) {
+        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+            model.addAttribute("username", userDetails.getUsername());
+            model.addAttribute("authorities", userDetails.getAuthorities());
+        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+            model.addAttribute("username", oauth2User.getAttribute("name"));
+            model.addAttribute("email", oauth2User.getAttribute("email"));
+            model.addAttribute("authorities", oauth2User.getAuthorities());
+        }
+        return "pages/temp_kat";
+    }
+
+    private List<BankCard> bankCards = new ArrayList<>();
+    @GetMapping("/wallet") //! Seite zum Karten hinzufügen...leider funktioniert sie noch nicht.
+    public String showWallet(Model model) {
+        model.addAttribute("bankCards", bankCards);
+        return "pages/wallet";
+    }
+
+    @PostMapping("/add-card") //! gehört zum Wallet
+    public String addCard(@RequestParam String cardNumber, @RequestParam String expiryDate, @RequestParam String cardHolderName) {
+        BankCard bankCard = new BankCard(cardNumber, expiryDate, cardHolderName);
+        bankCards.add(bankCard);
+        return "redirect:pages/wallet";
+    }
+
+    private Settings settings;
+
+    @GetMapping("/settings") //! Einstellungen: Namen, ect pp
+    public String getSettings(Model model) {
+        model.addAttribute("settings", settings);
+        return "pages/settings";
+    }
+
+    @PostMapping("/settings")
+    public String updateSettings(@ModelAttribute Settings newSettings) {
+        this.settings = newSettings;
+        return "redirect:pages/settings";
+    }
 
     @GetMapping("/report")
-    public String report(Model model) {
+    public String report(Model model, Authentication authentication, HttpServletRequest request) {
 
         List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
         if (sortedUmsaetze == null) {
@@ -287,10 +324,21 @@ public class MainController {
         model.addAttribute("sortedUmsaetze", sortedUmsaetze);
         model.addAttribute("balance", balance);
         model.addAttribute("currentDate", currentDate);
+
+        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+            model.addAttribute("username", userDetails.getUsername());
+            model.addAttribute("authorities", userDetails.getAuthorities());
+        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+            model.addAttribute("username", oauth2User.getAttribute("name"));
+            model.addAttribute("email", oauth2User.getAttribute("email"));
+            model.addAttribute("authorities", oauth2User.getAuthorities());
+        }
+
         return "pages/report";
     }
+
     @GetMapping("/diagram")
-    public String diagram(Model model) {
+    public String diagram(Model model, Authentication authentication, HttpServletRequest request) {
         List<Umsatz> sortedUmsaetze = (List<Umsatz>) umsatzService.getUmsatz();
         if (sortedUmsaetze == null) {
             sortedUmsaetze = new ArrayList<>(); // Initialisiere eine leere Liste, wenn null
@@ -308,66 +356,29 @@ public class MainController {
         model.addAttribute("sortedUmsaetze", sortedUmsaetze);
         model.addAttribute("diagramAmounts", diagramAmounts);
 
+        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+            model.addAttribute("username", userDetails.getUsername());
+            model.addAttribute("authorities", userDetails.getAuthorities());
+        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+            model.addAttribute("username", oauth2User.getAttribute("name"));
+            model.addAttribute("email", oauth2User.getAttribute("email"));
+            model.addAttribute("authorities", oauth2User.getAuthorities());
+        }
+
         return "pages/diagram";
     }
-
-
-    @PostMapping ({"/limits"})
-    @ResponseBody
-    public Limits createLimits(@RequestPart("limits") @Valid MultipartFile file) throws IOException {
-        return limitsService.saveLimits(Double.valueOf(Objects.requireNonNull(file.getOriginalFilename())), Integer.valueOf(file.getContentType()), file.getBytes());
-    }
-
-    @GetMapping({"/temp_kat"}) //! Homeseite um über Buttons zu interagieren
-    public String mode(Model model) {
-        model.addAttribute("username", "JohnDoe");
-        return "pages/temp_kat";
-    }
-
-    private List<BankCard> bankCards = new ArrayList<>();
-    @GetMapping("/wallet") //! Seite zum Karten hinzufügen...leider funktioniert sie noch nicht.
-    public String showWallet(Model model) {
-        model.addAttribute("bankCards", bankCards);
-        return "pages/wallet";
-    }
-
-    @PostMapping("/add-card") //! gehört zum Wallet
-    public String addCard(@RequestParam String cardNumber, @RequestParam String expiryDate, @RequestParam String cardHolderName) {
-        BankCard bankCard = new BankCard(cardNumber, expiryDate, cardHolderName);
-        bankCards.add(bankCard);
-        return "redirect:pages/wallet";
-    }
-
-/*    @Autowired
-    private BankCardService bankCardService;
-
-    @PostMapping("/add-card")
-    public String addBankCard(@RequestBody BankCard bankCard) {
-        bankCardService.saveBankCard(bankCard);
-        return "{\"success\": true}";
-    }
-
-    @GetMapping("/bank-cards")
-    public List<BankCard> getBankCards() {
-        return bankCardService.getAllBankCards();
-    }*/
-
-    private Settings settings;
-
-    @GetMapping("/settings") //! Einstellungen: Namen, ect pp
-    public String getSettings(Model model) {
-        model.addAttribute("settings", settings);
-        return "pages/settings";
-    }
-
-    @PostMapping("/settings")
-    public String updateSettings(@ModelAttribute Settings newSettings) {
-        this.settings = newSettings;
-        return "redirect:pages/settings";
-    }
-
     @GetMapping("/faq")
     public String faq() {
         return "pages/faq";
+    }
+
+    @GetMapping("/datenschutz")
+    public String datenschutz() {
+        return "pages/datenschutz";
+    }
+
+    @GetMapping("/impressum")
+    public String impressum() {
+        return "pages/impressum";
     }
 }
