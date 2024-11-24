@@ -52,7 +52,7 @@ content = @`
                             CSV importieren
                         </button>
                     </form>
-                    <form action="/transactions" method="post">
+                    <form action="/umsatzeintrag" method="get">
                         ${csrfHiddenInput}
                         <button type="submit"
                                 class="px-4 py-2 text-white rounded-md hover:bg-red-700 hover-text-gradient">

@@ -194,8 +194,8 @@
                     border-radius: 0px 0px 10px 10px;
                     border: 1px solid rgba( 255, 255, 255, 0.18 );">
                 <div class="flex" >
-                    <p style="margin-right: 1em" onclick="changeSiteImpressum()">Impressum</p> <!--! impressum seite mache-->
-                    <p onclick="changeSiteDatenschutz()">Datenschutz</p> <!--! Datenschutz seite machen-->
+                    <button class="mr-2 hover-text-gradient" onclick="changeSiteImpressum()">Impressum</button> <!--! impressum seite mache-->
+                    <button class="hover-text-gradient" onclick="changeSiteDatenschutz()">Datenschutz</button> <!--! Datenschutz seite machen-->
                 </div>
                 <div class="absolute bottom-0 right-0 p-4">
                     <p>© 2024 Finco. All rights reserved</p>

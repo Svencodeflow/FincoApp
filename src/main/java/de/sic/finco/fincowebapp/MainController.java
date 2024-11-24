@@ -137,16 +137,21 @@ public class MainController {
         return usersService.saveUsers(users);
     }
 
-    @GetMapping("/transactions")
-    public String getTransactions(HttpServletRequest request, Model model, String error, String logout) {
-        handleLoginError(model, error);
-        return "pages/transactions";
-    }
+    @GetMapping("/umsatzeintrag")
+    public String umsatzeintrag(Authentication authentication, HttpServletRequest request, Model model) {
 
-    @PostMapping("/transactions")
-    public String showTransactions(HttpServletRequest request, Model model, String error, String logout) {
-        handleLoginError(model, error);
-        return "pages/transactions";
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+                model.addAttribute("username", userDetails.getUsername());
+                model.addAttribute("authorities", userDetails.getAuthorities());
+            } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+                model.addAttribute("username", oauth2User.getAttribute("name"));
+                model.addAttribute("email", oauth2User.getAttribute("email"));
+                model.addAttribute("authorities", oauth2User.getAuthorities());
+            }
+        }
+
+        return "pages/umsatzeintrag";
     }
 
     private void handleLoginError(Model model, String error) {
@@ -157,8 +162,18 @@ public class MainController {
     }
 
     @GetMapping("/csv")
-    public String csv(HttpServletRequest request, Model model, String error, String logout) {
+    public String csv(HttpServletRequest request, Model model, String error, Authentication authentication) {
         handleLoginError(model, error);
+
+        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+            model.addAttribute("username", userDetails.getUsername());
+            model.addAttribute("authorities", userDetails.getAuthorities());
+        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+            model.addAttribute("username", oauth2User.getAttribute("name"));
+            model.addAttribute("email", oauth2User.getAttribute("email"));
+            model.addAttribute("authorities", oauth2User.getAuthorities());
+        }
+
         return "pages/csv";
     }
 
