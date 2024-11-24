@@ -3,12 +3,15 @@
 @import de.sic.finco.fincowebapp.CsrfHiddenInput
 
 @param String username
+@param String profilePicUrl
 
 @template.layout.main(content = @`
     <div class="container mx-auto p-4">
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-2xl font-bold mb-4">Willkommen zurück, <span>${username}</span></h1>
             <img src="/images/logo.png" alt="Logo" class="w-16 h-16">
+        </div>
+        <div class="flex items-center justify-center mb-6"> <img src="images/profilBild.jpg" alt="Profilbild" class="profile-pic w-24 h-24 rounded-full">
         </div>
         <nav class="mb-8">
             <ul class="space-y-4">
@@ -67,4 +70,13 @@
             });
         });
     </script>
+
+    <style>
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
 `)

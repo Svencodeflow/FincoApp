@@ -3,17 +3,24 @@
 @import de.sic.finco.fincowebapp.CsrfHiddenInput
 
 @template.layout.main(content = @`
-        <style>
-            /* Zusätzliche benutzerdefinierte CSS-Stile */
-            .faq-question {
-                cursor: pointer;
-            }
-            .faq-answer {
-                display: none;
-            }
-        </style>
+    <style>
+        /* Zusätzliche benutzerdefinierte CSS-Stile */
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            display: none;
+        }
+        img.logo {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold mb-6">Häufig gestellte Fragen (FAQ)</h1>
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-3xl font-bold mb-6">Häufig gestellte Fragen (FAQ)</h1>
+            <img src="/images/logo.png" alt="Logo" class="logo">
+        </div>
         <div class="faq-item mb-4">
             <div class="faq-question text-xl font-semibold text-gray-700 bg-gray-200 p-4 rounded" onclick="toggleAnswer(this)">Was ist Finco?</div>
             <div class="faq-answer text-gray-700 bg-white p-4 rounded mt-2">
@@ -36,8 +43,6 @@
             <div class="faq-question text-xl font-semibold text-gray-700 bg-gray-200 p-4 rounded" onclick="toggleAnswer(this)">Wie kann ich Unterstützung erhalten?</div>
             <div class="faq-answer text-gray-700 bg-white p-4 rounded mt-2">
                 Sie können uns jederzeit über das Kontaktformular auf unserer Website oder telefonisch unter der angegebenen Nummer erreichen.
-            </div>
-            <div class="text-center mt-8"> <a href="/temp_kat" class="bg-blue-500 text-white py-2 px-4 rounded">Zurück zur Übersicht</a>
             </div>
         </div>
     </div>
