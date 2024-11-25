@@ -11,6 +11,8 @@ import java.time.LocalDate;
 public class Users{
     @Id
     @NotNull
+    private int userid;
+    @NotNull
     private String kdnr;
     @NotNull
     private String useriban;
@@ -31,6 +33,14 @@ public class Users{
 
     public Users() {
 
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public String getKdnr() {

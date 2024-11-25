@@ -1,6 +1,5 @@
 package de.sic.finco.fincowebapp;
 
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -20,6 +19,8 @@ public class Umsatz {
     private int kategorieid;
     @NotNull
     private String beschreibung;
+    @NotNull
+    private int userid;
     @NotNull
     private String kdnr;
     @NotNull
@@ -75,20 +76,28 @@ public class Umsatz {
         this.beschreibung = beschreibung;
     }
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     public String getKdnr() {
         return kdnr;
     }
 
-    public void setkdnr(String kdnr) {
+    public void setKdnr(String kdnr) {
         this.kdnr=kdnr;
     }
 
-    public String getIBAN() {
+    public String getUseriban() {
         return useriban;
     }
 
-    public void setIBAN(String userIBAN) {
-        this.useriban =userIBAN;
+    public void setUseriban(String useriban) {
+        this.useriban =useriban;
     }
 
     public String getArt() {

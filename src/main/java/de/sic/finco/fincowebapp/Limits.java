@@ -9,6 +9,8 @@ public class Limits {
     @Id @NotNull
     private int limitid;
     @NotNull
+    private int userid;
+    @NotNull
     private String kdnr;
     @NotNull
     private int kategorieid;
@@ -24,6 +26,14 @@ public class Limits {
 
     public void setLimitid(int limitid) {
         this.limitid = limitid;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public String getKdnr() {

@@ -2,15 +2,13 @@ package de.sic.finco.fincowebapp;
 
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class MainService {
-    private final KategorieRepository kategorieRepository;
-    private final UsersRepository usersRepository;
-    private final UmsatzRepository umsatzRepository;
-    private final LoginRepository loginRepository;
-    private final LimitsRepository limitsRepository;
+    private KategorieRepository kategorieRepository;
+    private UsersRepository usersRepository;
+    private UmsatzRepository umsatzRepository;
+    private LoginRepository loginRepository;
+    private LimitsRepository limitsRepository;
 
     public MainService(KategorieRepository kategorieRepository, UsersRepository usersRepository, UmsatzRepository umsatzRepository, LoginRepository loginRepository, LimitsRepository limitsRepository) {
         this.kategorieRepository = kategorieRepository;
@@ -40,12 +38,12 @@ public class MainService {
         return usersRepository.findAll();
     }
 
-    public Users getKdnr(String kdnr) {
-        return usersRepository.findById(kdnr).orElse(null);
+    public Users getUserid(Integer id) {
+        return usersRepository.findById(id).orElse(null);
     }
 
-    public void removeUser(String kdnr) {
-        usersRepository.deleteById(kdnr);
+    public void removeUser(Integer id) {
+        usersRepository.deleteById(id);
     }
 
     public Users saveUsers(Users users) {

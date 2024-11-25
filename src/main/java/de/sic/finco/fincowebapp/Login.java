@@ -12,6 +12,8 @@ public class Login{
     @NotNull
     private int loginid;
     @NotNull
+    private int userid;
+    @NotNull
     private String kdnr;
     @NotNull
     private String useriban;
@@ -34,6 +36,14 @@ public class Login{
         this.loginid = loginid;
     }
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     public String getKdnr() {
         return kdnr;
     }
@@ -42,11 +52,11 @@ public class Login{
         this.kdnr = kdnr;
     }
 
-    public String getIban() {
+    public String getUseriban() {
         return useriban;
     }
 
-    public void setIban(String useriban) {
+    public void setUseriban(String useriban) {
         this.useriban=useriban;
     }
 

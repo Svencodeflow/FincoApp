@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.io.IOException;
+
 import java.util.*;
 
 @Controller
@@ -93,8 +92,9 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/kategorie/{id}"})
-    @ResponseBody public void deleteKategorie(@PathVariable Integer id) {
+    @DeleteMapping ("/kategorie/{id}")
+    @ResponseBody
+    public void deleteKategorie(@PathVariable Integer id) {
         kategorieService.removeKategorie(id);
     }
 
@@ -114,10 +114,10 @@ public class MainController {
         return usersService.getUsers();
     }
 
-    @GetMapping({"/users/{kdnr}"})
+    @GetMapping({"/users/{id}"})
     @ResponseBody
-    public Users getUsers(@PathVariable String kdnr) {
-        Users users = usersService.getKdnr(kdnr);
+    public Users getUsers(@PathVariable Integer id) {
+        Users users = usersService.getUserid(id);
         if(users == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
@@ -125,12 +125,13 @@ public class MainController {
         }
     }
 
-    @DeleteMapping ({"/users/{kdnr}"})
-    @ResponseBody public void deleteUsers(@PathVariable String kdnr) {
-        usersService.removeUser(kdnr);
+    @DeleteMapping ("/users/{id}")
+    @ResponseBody
+    public void deleteUsers(@PathVariable Integer id) {
+        usersService.removeUser(id);
     }
 
-    @PostMapping ({"/users"})
+    @PostMapping("/users")
     @ResponseBody
     public ResponseEntity<Users> createUsers(@RequestBody @Valid Users users) {
         Users savedUsers = usersService.saveUsers(users);
